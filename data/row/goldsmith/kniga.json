@@ -1,0 +1,2327 @@
+{
+    "book": {
+      "title": "Прыгни выше головы! 20 привычек, от которых нужно отказаться, чтобы покорить вершину успеха",
+      "author": "Маршалл Голдсмит",
+      "isbn": "978-5-9693-0328-7",
+      "publisher": "Олимп-Бизнес",
+      "year": 2015,
+      "totalPages": null,
+      "pages": [
+        {
+          "pageNumber": 7,
+          "content": "Предисловие к русскому изданию\n[Содержит начало предисловия, написанного Львом Хасисом]",
+          "metadata": {
+            "isChapterStart": true,
+            "partTitle": "Предисловие к русскому изданию",
+            "quotes": [
+              {
+                "id": 1,
+                "text": "What got you here won't get you there",
+                "author": "Marshall Goldsmith"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 8,
+          "content": "[Продолжение предисловия к русскому изданию]",
+          "metadata": {
+            "isChapterStart": false,
+            "partTitle": "Предисловие к русскому изданию",
+            "quotes": []
+          }
+        },
+        {
+          "pageNumber": 9,
+          "content": "Зачем читать эту книгу?",
+          "metadata": {
+            "isChapterStart": true,
+            "partTitle": "Зачем читать эту книгу?",
+            "quotes": [
+              {
+                "id": 2,
+                "text": "Какова самая типичная проблема руководителей, которых вы консультировали?",
+                "author": "Harvard Business Review"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 10,
+          "content": "Часть I\nПроблемы успеха\nИз которой мы узнаем, как наши предыдущие успехи порой мешают нам добиться большего\n\nГлава 1\nВы находитесь здесь",
+          "metadata": {
+            "isChapterStart": true,
+            "partNumber": 1,
+            "partTitle": "Проблемы успеха",
+            "chapterNumber": 1,
+            "chapterTitle": "Вы находитесь здесь",
+            "quotes": [
+              {
+                "id": 1,
+                "text": "А как поступил бы Пол Ньюмен?",
+                "author": "Неизвестный человек"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 11,
+          "content": "Пример 1: История о Карлосе (продолжение)\nПример 2: История о Шэрон",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 1,
+            "chapterNumber": 1,
+            "quotes": []
+          }
+        },
+        {
+          "pageNumber": 12,
+          "content": "Пример 2: История о Шэрон (продолжение)\nПример 3: История о Мартине",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 1,
+            "chapterNumber": 1,
+            "quotes": []
+          }
+        },
+        {
+          "pageNumber": 13,
+          "content": "Продолжение истории о Мартине",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 1,
+            "chapterNumber": 1,
+            "quotes": [
+              {
+                "id": 2,
+                "text": "Что за самовлюбленный осел! Когда же он спросит, что мне нужно? Нет, этого типа я к моим деньгам и близко не подпущу.",
+                "author": "Титан бизнеса о Мартине"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 14,
+          "content": "Продолжение обсуждения проблем успеха",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 1,
+            "chapterNumber": 1,
+            "quotes": [
+              {
+                "id": 3,
+                "text": "Стоит лишь поставить запятую не в том месте – и искажается смысл целого",
+                "author": "Журналист"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 15,
+          "content": "Окончание первой главы",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 1,
+            "chapterNumber": 1,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "То, что привело тебя сюда, не приведет тебя туда",
+                "author": "Маршалл Голдсмит (перевод оригинального названия книги)"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 16,
+          "content": "Глава 2. Ну, хватит о вас",
+          "metadata": {
+            "isChapterStart": true,
+            "partNumber": 1,
+            "chapterNumber": 2,
+            "chapterTitle": "Ну, хватит о вас",
+            "quotes": [
+              {
+                "id": 2,
+                "text": "Маршалл, – сказал босс, – есть у меня один парень. Он руководит крупным подразделением, каждый квартал перевыполняет плановые задания. Он молод, умен, предан компании, хорошо мотивирован, трудолюбив, предприимчив, творчески мыслит, харизматичен, но самонадеян, упрям и считает, что знает все.",
+                "author": "Главный управляющий компании из списка Fortune 100"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 17,
+          "content": "Описание методики работы автора",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 1,
+            "chapterNumber": 2,
+            "quotes": []
+          }
+        },
+        {
+          "pageNumber": 18,
+          "content": "Аналогия с гольфом",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 1,
+            "chapterNumber": 2,
+            "quotes": []
+          }
+        },
+        {
+          "pageNumber": 19,
+          "content": "Глава 3. Обольщение успехом, или Почему мы противимся переменам",
+          "metadata": {
+            "isChapterStart": true,
+            "partNumber": 1,
+            "chapterNumber": 3,
+            "chapterTitle": "Обольщение успехом, или Почему мы противимся переменам",
+            "quotes": [
+              {
+                "id": 3,
+                "text": "ВЫ, НАВЕРНОЕ, ОЩУЩАЕТЕ СЕБЯ МЕДВЕДЕМ. А МЫ ПРЕДПОЛАГАЕМ, ЧТО ВЫ – ЛОСОСЬ.",
+                "author": "Реклама страховой компании Unum"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 20,
+          "content": "Убеждение 1: Я добился успеха",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 1,
+            "chapterNumber": 3,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Когда передо мной подающий, чьи мячи я удачно отбивал раньше, я выхожу на площадку с мыслью, что он 'у меня в кармане'. Это придает мне уверенность.",
+                "author": "Игрок высшей бейсбольной лиги"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 21,
+          "content": "Убеждение 2: Я могу добиться успеха",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 1,
+            "chapterNumber": 3,
+            "quotes": [
+              {
+                "id": 2,
+                "text": "Поручите мне",
+                "author": "Успешные люди во время совещания"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 22,
+          "content": "Убеждение 3: Я добьюсь успеха",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 1,
+            "chapterNumber": 3,
+            "quotes": [
+              {
+                "id": 3,
+                "text": "Мне не хватает дел",
+                "author": "Клиенты автора"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 23,
+          "content": "Убеждение 4: Я выбираю успех",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 1,
+            "chapterNumber": 3,
+            "quotes": [
+              {
+                "id": 4,
+                "text": "Мы собирались, но было просто некогда",
+                "author": "Бездельники"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 24,
+          "content": "Почему успех делает нас суеверными",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 1,
+            "chapterNumber": 3,
+            "quotes": [
+              {
+                "id": 5,
+                "text": "Success Is a Choice",
+                "author": "Рик Питино"
+              },
+              {
+                "id": 6,
+                "text": "Это я суеверен? – скажете вы. – Да ничего подобного. Я не верю ни в какую чепуху. Я успешен потому, что заслужил успех.",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 25,
+          "content": "История о Гарри (начало)",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 1,
+            "chapterNumber": 3,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Не выношу дураков",
+                "author": "Гарри"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 26,
+          "content": "История о Гарри (продолжение)",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 1,
+            "chapterNumber": 3,
+            "quotes": [
+              {
+                "id": 2,
+                "text": "По зрелом размышлении, – сказал он, – это, наверное, я иногда веду себя глупо",
+                "author": "Гарри"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 27,
+          "content": "Все мы повинуемся естественному закону",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 1,
+            "chapterNumber": 3,
+            "quotes": [
+              {
+                "id": 3,
+                "text": "Никогда не употребляйте термин «синергия». Это ужасное слово. Единственное, что здесь подходит, – «естественный закон»",
+                "author": "Барри Диллер"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 28,
+          "content": "О естественном законе и мотивации",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 1,
+            "chapterNumber": 3,
+            "quotes": [
+              {
+                "id": 4,
+                "text": "Я прав. Остальные ошибаются.",
+                "author": "Успешные люди после серии побед"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 29,
+          "content": "История о Джоне",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 1,
+            "chapterNumber": 3,
+            "quotes": [
+              {
+                "id": 5,
+                "text": "Такова наша природа. Таков закон.",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 30,
+          "content": "Часть II\nДвадцать привычек, мешающих вам на пути к вершине\nГлава 4\nДвадцать вредных привычек",
+          "metadata": {
+            "isChapterStart": true,
+            "partNumber": 2,
+            "partTitle": "Двадцать привычек, мешающих вам на пути к вершине",
+            "chapterNumber": 4,
+            "chapterTitle": "Двадцать вредных привычек",
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Мы изводим массу времени, уча лидеров, что делать. Нам не хватает времени объяснять им, чего не делать. Половину известных мне лидеров не нужно учить, что делать. Их нужно учить, где остановиться.",
+                "author": "Питер Друкер"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 31,
+          "content": "История о Джеральде Левине и Time Warner",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 2,
+                "text": "Слава богу, мы не вкинули деньги на эту авантюру",
+                "author": "Автор с женой"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 32,
+          "content": "Переход на нейтральную позицию",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 3,
+                "text": "Я должен стать более обходительным",
+                "author": "Пример решения"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 33,
+          "content": "Что с нами не так? Список вредных привычек 1-13",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": []
+          }
+        },
+        {
+          "pageNumber": 34,
+          "content": "Список вредных привычек 14-20 и заключение",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 4,
+                "text": "Прошу извинить. Впредь буду поступать иначе",
+                "author": "Рекомендуемая фраза"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 35,
+          "content": "Чем выше вы поднимаетесь, тем более поведенческими становятся ваши проблемы",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "На верхних уровнях организационной жизни все ключевые игроки обладают необходимыми профессиональными качествами",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 36,
+          "content": "Два предупреждения + Привычка №1",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 2,
+                "text": "Это я, – скажете вы. – Я делал это всегда, а сам даже и не подозревал",
+                "author": "Предполагаемая реакция читателя"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 37,
+          "content": "Анализ чрезмерного стремления к победе",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 3,
+                "text": "С кем бы в идеале вы хотели поработать?",
+                "author": "Представитель генералитета армии США"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 38,
+          "content": "Привычка №2: чрезмерное желание внести свой вклад",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 4,
+                "text": "Один? – усмехнулся он. – Да у нас их пруд пруди",
+                "author": "Представитель генералитета"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 39,
+          "content": "История о Билле Блассе и начало о Привычке №3",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 5,
+                "text": "Мы понимаем толк в шоколаде, а он нет. Давайте поступим, как считаем нужным. Он никогда не заметит подмены",
+                "author": "Глава фирмы"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 40,
+          "content": "Продолжение разбора привычки №3",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Не могу представить, что вы обо мне думаете",
+                "author": "Китон"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 41,
+          "content": "Нейтральная позиция и переход к привычке №4",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 2,
+                "text": "Благодарю, я приму к сведению",
+                "author": "Рекомендуемая фраза"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 42,
+          "content": "Анализ деструктивных высказываний",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 3,
+                "text": "если бы ваши глаза были бриллиантами, они предлагались бы от Zales, а не от Harry Winston",
+                "author": "Пример деструктивного высказывания"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 43,
+          "content": "Советы по преодолению деструктивных высказываний",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 4,
+                "text": "прежде чем совершить небезупречный в моральном смысле поступок, спросите себя, хотите ли вы, чтобы ваша мать прочитала об этом в газете",
+                "author": "Уоррен Баффетт"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 44,
+          "content": "Привычка №5: позиция сопротивления",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 5,
+                "text": "Нет, Маршалл, я такими вещами не занимаюсь",
+                "author": "Директор компании"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 45,
+          "content": "Окончание анализа привычки №5 и начало привычки №6: превознесение своего ума",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Похоже, я только что потерял 100 долларов, да?",
+                "author": "Участник семинара из Сингапура"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 46,
+          "content": "История о профессоре и Моцарте",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 2,
+                "text": "Назовите мне тринадцать опер Моцарта",
+                "author": "Знакомый автора"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 47,
+          "content": "Привычка №7: гнев как средство управления",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 3,
+                "text": "Разворачивайся, разиня! Ты же идешь прямо на меня. Река широкая. Смотри внимательно!",
+                "author": "Крестьянин из притчи"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 48,
+          "content": "Продолжение о гневе, история с дочерью автора",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 4,
+                "text": "Какая вульгарная девка! Интересно, кто ее родители?",
+                "author": "Воображаемая реакция людей"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 49,
+          "content": "Привычка №8: негативизм",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 5,
+                "text": "Дайте мне объяснить, почему это не будет работать",
+                "author": "Типичная фраза негативиста"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 50,
+          "content": "Привычка №9: сокрытие информации",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Знание – сила",
+                "author": "Основной принцип информационных технологий"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 51,
+          "content": "История о сыне соседа и мытье машины",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 2,
+                "text": "Знаешь, я злюсь не на тебя. Я злюсь на себя. Я должен был тебе объяснить, что нужно делать",
+                "author": "Сосед"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 52,
+          "content": "Привычка №10: неумение воздавать по достоинству",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 3,
+                "text": "Не стоит благодарности",
+                "author": "Типичный ответ"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 53,
+          "content": "Привычка №11: приписывание себе чужих заслуг",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 4,
+                "text": "Так устроен мир",
+                "author": "Типичное оправдание"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 54,
+          "content": "Как перестать присваивать чужое",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 5,
+                "text": "Что же, – думаем мы, любуясь собой, – очень неплохо вышло",
+                "author": "Типичная мысль при самопохвале"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 55,
+          "content": "Привычка №12: склонность к самооправданию",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Когда человек достигает возраста ответственности, – пишет Клинтон, – не важно, как люди ведут себя по отношению к нему. Это не может служить оправданием собственных ошибок",
+                "author": "Билл Клинтон"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 56,
+          "content": "История из жизни автора о техническом образовании",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 2,
+                "text": "Маршалл, ты очень смышленый. Ты самый умный мальчик в Вэлли-стейшн",
+                "author": "Мать автора"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 57,
+          "content": "Привычка №13: ссылки на прошлое",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 3,
+                "text": "Вот 25 центов. Позвоните тому, кто согласен все это слушать",
+                "author": "Клиент автора"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 58,
+          "content": "Привычка №14: покровительство любимчикам",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 4,
+                "text": "ясно видит перспективу, способствует максимальному раскрытию потенциала сотрудников",
+                "author": "Из документов компаний"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 59,
+          "content": "Тест с собакой и рекомендации по борьбе с фаворитизмом",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 5,
+                "text": "Гав",
+                "author": "Келли, пародируя собаку"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 60,
+          "content": "Привычка №15: неготовность выразить сожаление",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Хотите сделать человека другом – позвольте ему оказать вам услугу",
+                "author": "Бенджамин Франклин"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 61,
+          "content": "История о Бэт и Харви, Привычка №16: невнимание",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 2,
+                "text": "Знаете, Харви, я много слышала здесь о себе, и должна вам сказать, что в основном со всем согласна",
+                "author": "Бэт"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 62,
+          "content": "Проблема невнимания в корпоративной среде",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 3,
+                "text": "Следующий слайд. Следующий",
+                "author": "Типичная фраза руководителей"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 63,
+          "content": "Привычка №17: неблагодарность",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 4,
+                "text": "Я не буду знать меньше",
+                "author": "Крис Кэшн"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 64,
+          "content": "История о благодарности и домашнем кабинете",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 5,
+                "text": "Благодарность не является ограниченным ресурсом и не требует больших затрат. Она доступна, как воздух",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 65,
+          "content": "Привычка №18: «наказание вестника»",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "В следующий раз, когда ты мне поможешь на дороге, я скажу только «спасибо»",
+                "author": "Автор к Лиде"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 66,
+          "content": "Привычка №19: перекладывание ответственности",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 2,
+                "text": "Избегание ответственности – это вывернутая наизнанку склонность приписывать себе чужие заслуги",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 67,
+          "content": "История с Сэмом и начало Привычки №20",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 3,
+                "text": "У меня потребность быть совершенным. А все несовершенное я отношу на счет кого-нибудь другого",
+                "author": "Сэм"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 68,
+          "content": "Диалог о признании чужих заслуг",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 4,
+                "text": "Потому что хочу быть самим собой",
+                "author": "Руководитель"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 69,
+          "content": "Заключение главы о привычках",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 4,
+            "quotes": [
+              {
+                "id": 5,
+                "text": "Любопытное уравнение: «меня» меньше, «их» больше, а выигрывают обе стороны",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 70,
+          "content": "Привычка №21: одержимость целью",
+          "metadata": {
+            "isChapterStart": true,
+            "partNumber": 2,
+            "chapterNumber": 5,
+            "quotes": [
+              {
+                "id": 6,
+                "text": "Одержимость целью сама по себе – не порок и, в отличие от перечисленных выше двадцати недостатков, не является межличностным актом",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 71,
+          "content": "История с Кэндейси и история на Уолл-стрит",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 5,
+            "quotes": [
+              {
+                "id": 7,
+                "text": "Я только что в третий раз развелся. Когда получаешь три счета на алименты в месяц, тут уж не до жиру",
+                "author": "Майк"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 72,
+          "content": "Тест 'Добрый самаритянин' и выводы",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 2,
+            "chapterNumber": 5,
+            "quotes": [
+              {
+                "id": 8,
+                "text": "Все это – типичные предпосылки одержимости. Огромная энергия. Строжайшая дисциплина. Грандиозная цель. Ложная цель. Дорога в никуда",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 73,
+          "content": "Начало части III: О том, как измениться к лучшему",
+          "metadata": {
+            "isChapterStart": true,
+            "partNumber": 3,
+            "chapterNumber": null,
+            "quotes": [
+              {
+                "id": 9,
+                "text": "Избыточная информация характерна для нашего повседневного общения. Всем нам присуща непреодолимая потребность поделиться тем, что мы знаем",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 74,
+          "content": "О делении информацией и эмоциями",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": null,
+            "quotes": [
+              {
+                "id": 10,
+                "text": "Любовь – по большей части уместная эмоция, а гнев – нет. Но и слова «я тебя люблю» могут стать неуместными, если мы произносим их слишком часто или в неподходящие моменты",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 75,
+          "content": "Негативная обратная связь и ее влияние на успешных людей",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 6,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Без нее я не смог бы работать с клиентами, не знал бы, каких перемен хотят от них окружающие",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 76,
+          "content": "Четыре обязательства при получении обратной связи",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 6,
+            "quotes": [
+              {
+                "id": 2,
+                "text": "Я буду работать с клиентом примерно год. Мне не заплатят, если не произойдут улучшения",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 77,
+          "content": "Четвертое обязательство и его важность",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 6,
+            "quotes": [
+              {
+                "id": 3,
+                "text": "Четвертое обязательство способствует тому, что процесс изменения становится обоюдным",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 78,
+          "content": "О выборе людей для обратной связи",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 6,
+            "quotes": [
+              {
+                "id": 4,
+                "text": "Лишь взаимность позволяет наладить прочную обратную связь",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 79,
+          "content": "Что нельзя делать при получении обратной связи",
+          "metadata": {
+            "isChapterStart": true,
+            "partNumber": 3,
+            "chapterNumber": 6,
+            "quotes": [
+              {
+                "id": 5,
+                "text": "Считайте любой совет подарком или комплиментом и отвечайте просто: «Благодарю вас»",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 80,
+          "content": "Виды обратной связи и способы ее получения",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 6,
+            "quotes": [
+              {
+                "id": 6,
+                "text": "Обратную связь можно подразделить на три основных вида: по запросу, спонтанная (без запроса) и обсервационная (полученная через наблюдения)",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 81,
+          "content": "Обратная связь по запросу",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 6,
+            "quotes": [
+              {
+                "id": 7,
+                "text": "По моему опыту, лучший вариант обратной связи по запросу – конфиденциальная. Это очень удобно. Вам не надо обороняться",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 82,
+          "content": "Спонтанная обратная связь и окно Джогари",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 6,
+            "quotes": [
+              {
+                "id": 8,
+                "text": "Психологи разработали множество схем, позволяющих нам лучше понять самих себя. Одна из самых любопытных – простая таблица из четырех клеток, известная как «окно Джогари»",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 83,
+          "content": "История о семинаре доктора Танненбаума",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 6,
+            "quotes": [
+              {
+                "id": 9,
+                "text": "Доктор Танненбаум, я считаю, что вы лучше всех понимаете смысл моих слов. Я думаю, именно вы способны в полной мере оценить всю суетность стремления постоянно производить впечатление на других",
+                "author": "Маршалл"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 84,
+          "content": "Обсервационная обратная связь",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 6,
+            "quotes": [
+              {
+                "id": 10,
+                "text": "Несравненно легче разглядеть недостатки у других, чем распознать их в себе самом",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 85,
+          "content": "История Барри и обсервационная обратная связь",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 6,
+            "quotes": [
+              {
+                "id": 11,
+                "text": "У меня были разные варианты, - рассказывал Барри. - Я мог затаиться, не контактировать с ним, игнорировать его, рыть ему яму. Но мог также доказать, что я ему не враг и нуждаюсь в его поддержке",
+                "author": "Барри"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 86,
+          "content": "Способы получения обратной связи",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 6,
+            "quotes": [
+              {
+                "id": 12,
+                "text": "Начните в какой-нибудь день фиксировать замечания на ваш счет. Например: «Отличная мысль, Маршалл», «Вы опоздали, Маршалл» или «Вы меня слушаете, Маршалл?»",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 87,
+          "content": "Метод завершения предложения",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 6,
+            "quotes": [
+              {
+                "id": 13,
+                "text": "Если я стану менее категоричным, - произнес он, - то мои дети, может быть, опять захотят со мной разговаривать",
+                "author": "Генерал морской пехоты"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 88,
+          "content": "Самовосхваление и его признаки",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 6,
+            "quotes": [
+              {
+                "id": 14,
+                "text": "Такого рода психологические феномены позволяют утверждать: то, что человек выдает за свое достоинство, в большинстве случаев оказывается его самым очевидным недостатком",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 89,
+          "content": "История Майка и важность поведения дома",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 6,
+            "quotes": [
+              {
+                "id": 15,
+                "text": "И правда, мне нужно что-то с собой делать. Я постараюсь стать другим – не ради денег и не ради фирмы. У меня двое сыновей, и мне будет стыдно, если через двадцать лет мне скажут то, что я услышал от вас",
+                "author": "Майк"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 90,
+          "content": "Заключение главы об обратной связи",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 6,
+            "quotes": [
+              {
+                "id": 16,
+                "text": "Пять типов обратной связи – это незаметные стороннему глазу техники, позволяющие нам внимательнее присмотреться к окружающему миру",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 91,
+          "content": "Начало главы об извинении",
+          "metadata": {
+            "isChapterStart": true,
+            "partNumber": 3,
+            "chapterNumber": 7,
+            "quotes": [
+              {
+                "id": 17,
+                "text": "Правительство подвело вас; те, кому была доверена ваша защита, подвели вас, я подвел вас",
+                "author": "Ричард Кларк"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 92,
+          "content": "История Теда",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 7,
+            "quotes": [
+              {
+                "id": 18,
+                "text": "Маршалл, – сообщил Тед, – вы можете быть мною довольны. Я полностью разрушил отношения с ближайшим другом",
+                "author": "Тед"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 93,
+          "content": "Продолжение истории Теда и Винса",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 7,
+            "quotes": [
+              {
+                "id": 19,
+                "text": "Теперь я знаю: это работает",
+                "author": "Тед"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 94,
+          "content": "Искусство приносить извинения",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 7,
+            "quotes": [
+              {
+                "id": 20,
+                "text": "Основной принцип извинения: быть максимально кратким. Вам предстоит многое сделать, чтобы стать лучше",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 95,
+          "content": "Начало главы о намерениях и рекламной кампании",
+          "metadata": {
+            "isChapterStart": true,
+            "partNumber": 3,
+            "chapterNumber": 8,
+            "quotes": [
+              {
+                "id": 21,
+                "text": "Гораздо легче изменить само поведение, чем его восприятие окружающими. По моим оценкам, нужно стать на 100 % лучше, чтобы подняться на 10 % в глазах коллег",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 96,
+          "content": "О фазе покоя и семи этапах проекта",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 8,
+            "quotes": [
+              {
+                "id": 22,
+                "text": "Вы не учли, что любой успешный проект должен пройти семь этапов",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 97,
+          "content": "Советы по работе пресс-секретаря",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 8,
+            "quotes": [
+              {
+                "id": 23,
+                "text": "Воспринимайте каждый день как пресс-конференцию, во время которой коллеги критически судят о вас и готовы задать каверзный вопрос",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 98,
+          "content": "Начало главы об умении слушать",
+          "metadata": {
+            "isChapterStart": true,
+            "partNumber": 3,
+            "chapterNumber": 9,
+            "quotes": [
+              {
+                "id": 24,
+                "text": "Хорошему слушателю свойственны три умения: он сначала думает, а потом говорит; он слушает с уважением; он всегда оценивает необходимость своего ответа, спрашивая себя: «Стоит ли это делать?»",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 99,
+          "content": "О важности умения слушать с уважением",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 9,
+            "quotes": [
+              {
+                "id": 25,
+                "text": "Вопрос «А стоит ли?» заставляет задуматься о том, как собеседник воспримет ваш ответ, и сыграть, по крайней мере, с опережением на два хода",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 100,
+          "content": "О важности вопроса «А стоит ли?»",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 9,
+            "quotes": [
+              {
+                "id": 26,
+                "text": "Перед тем как говорить, я беру паузу и задаю себе вопрос «А стоит ли?». Как я выяснил, в 50% случаев то, что я собираюсь сказать, как правило, разумно, но выражать это вслух не стоит",
+                "author": "Главный операционный директор компании"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 101,
+          "content": "О грани между хорошим и превосходным",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 9,
+            "quotes": [
+              {
+                "id": 27,
+                "text": "Способность внушить человеку в процессе общения, что он является важнейшим и единственным объектом вашего внимания, и есть та граница, которая отделяет превосходное от хорошего",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 102,
+          "content": "О умении концентрироваться",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 9,
+            "quotes": [
+              {
+                "id": 28,
+                "text": "На 90% все зависит, конечно, от умения слушать. А умение слушать требует самодисциплины – способности концентрировать внимание",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 103,
+          "content": "Практические рекомендации по слушанию",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 9,
+            "quotes": [
+              {
+                "id": 29,
+                "text": "Если вы соблюдете все условия, вам откроется парадоксальная истина: чем больше вы подавляете желание представить себя в выгодном свете, тем лучше выглядите в чужих глазах",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 104,
+          "content": "Начало главы о благодарении",
+          "metadata": {
+            "isChapterStart": true,
+            "partNumber": 3,
+            "chapterNumber": 10,
+            "quotes": [
+              {
+                "id": 30,
+                "text": "Благодарение приносит плоды потому, что является выражением одной из наших базисных эмоций – признательности",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 105,
+          "content": "О благодарственных письмах",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 10,
+            "quotes": [
+              {
+                "id": 31,
+                "text": "Я рассматриваю умение благодарить как важнейший актив, а его отсутствие – как серьезнейший поведенческий недостаток",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 106,
+          "content": "Завершение главы о благодарении",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 10,
+            "quotes": [
+              {
+                "id": 32,
+                "text": "В том-то и вся прелесть благодарности. Пятерка с плюсом «по благодарности» – это всегда только очень хорошо",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 107,
+          "content": "Начало главы об отслеживании",
+          "metadata": {
+            "isChapterStart": true,
+            "partNumber": 3,
+            "chapterNumber": 11,
+            "quotes": [
+              {
+                "id": 33,
+                "text": "Отслеживание – это способ доказать себе и окружающим, что перемены к лучшему – это текущий процесс, а не разовый «переход в другую религию»",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 108,
+          "content": "Почему отслеживание работает",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 11,
+            "quotes": [
+              {
+                "id": 34,
+                "text": "Через год я попросил непосредственных подчиненных этих людей оценить, действительно ли их боссы стали работать по-другому. Утвердительно ответили 70%, а 30% заявили, что решительно ничего не изменилось",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 109,
+          "content": "Об эффекте Хоторна",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 11,
+            "quotes": [
+              {
+                "id": 35,
+                "text": "Суть «эффекта Хоторна» такова: производительность возрастает, если рабочие считают, что их начальники проявляют внимание и интерес к деятельности подчиненных",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 110,
+          "content": "Контрольная рутина ежевечерних вопросов",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 11,
+            "quotes": [
+              {
+                "id": 36,
+                "text": "Первый вопрос неизменен: «Ты счастлив?» Быть счастливым для меня важнее всего, а иначе все теряет смысл",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 111,
+          "content": "О важности дисциплины и самоконтроля",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 11,
+            "quotes": [
+              {
+                "id": 37,
+                "text": "Общение с Джимом – хорошим, дружелюбным человеком, которого я не хочу разочаровать, – очень напоминает процесс отслеживания",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 112,
+          "content": "Критерии выбора коучера для отслеживания",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 11,
+            "quotes": [
+              {
+                "id": 38,
+                "text": "Если условия соблюдены, остальное уже просто. Выберите то, чем вы недовольны и что хотите изменить",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 113,
+          "content": "Начало главы об упреждающей связи",
+          "metadata": {
+            "isChapterStart": true,
+            "partNumber": 3,
+            "chapterNumber": 12,
+            "quotes": [
+              {
+                "id": 39,
+                "text": "Концепция упреждающей связи настолько проста, что мне даже немного неловко присваивать ей особый термин",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 114,
+          "content": "Преимущества упреждающей связи",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 12,
+            "quotes": [
+              {
+                "id": 40,
+                "text": "Упреждающая связь – это обратная связь, ориентированная в противоположном направлении. Если обычная обратная связь позволяет узнать, как вы действовали в прошлом, то упреждающая связь дает вам идеи, как действовать в будущем",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 115,
+          "content": "Почему работает упреждающая связь",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 12,
+            "quotes": [
+              {
+                "id": 41,
+                "text": "Она работает, поскольку успешные люди, с трудом переносящие критику, охотно принимают идеи, связанные с будущим",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 116,
+          "content": "Притча о двух монахах",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 12,
+            "quotes": [
+              {
+                "id": 42,
+                "text": "А, эту, – усмехнулся сонный монах. – Я всего лишь перенес ее на другой берег, а вот ты нес ее всю дорогу до монастыря",
+                "author": "Монах из притчи"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 117,
+          "content": "Конец главы об упреждающей связи",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 3,
+            "chapterNumber": 12,
+            "quotes": [
+              {
+                "id": 43,
+                "text": "Автогонщиков учит: «Смотрите на дорогу, а не на ограничительный барьер»",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 118,
+          "content": "Начало главы о правилах перемен",
+          "metadata": {
+            "isChapterStart": true,
+            "partNumber": 4,
+            "chapterNumber": 13,
+            "quotes": [
+              {
+                "id": 44,
+                "text": "Маршалл, я понял, что суть вашей работы – отбор клиентов. Вы просеиваете их до тех пор, пока успех не будет практически гарантирован",
+                "author": "Харлан"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 119,
+          "content": "О стратегии успешных людей",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 13,
+            "quotes": [
+              {
+                "id": 45,
+                "text": "С годами понимаешь: если у тебя лучшие игроки, победа твоя",
+                "author": "Джек Уэлч"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 120,
+          "content": "История Дэвида - финансового директора",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 13,
+            "quotes": [
+              {
+                "id": 46,
+                "text": "Имейте это в виду. Иногда обратная связь выявляет симптом, а не болезнь",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 121,
+          "content": "Правило выбора объекта перемен",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 13,
+            "quotes": [
+              {
+                "id": 47,
+                "text": "Успешные люди не любят быть неправыми даже больше, чем любят быть правыми",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 122,
+          "content": "О выборе правильного фокуса изменений",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 13,
+            "quotes": [
+              {
+                "id": 48,
+                "text": "Если человек принимает решение стать лучше, он совершает нечто трудное и героическое",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 123,
+          "content": "История Мэтта и его намерений измениться",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 13,
+            "quotes": [
+              {
+                "id": 49,
+                "text": "Единственное, что мне действительно нужно, – это сбросить фунтов двадцать и укрепить мышцы",
+                "author": "Мэтт"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 124,
+          "content": "О сложностях достижения целей",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 13,
+            "quotes": [
+              {
+                "id": 50,
+                "text": "Прийти в хорошую физическую форму – задача, безусловно, выполнимая. Очень многие люди успешно ее решают. Но это будет нелегко",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 125,
+          "content": "Правило 4. Не прячьтесь от правды, которую вы должны знать",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 13,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Настоящее достижение цели требует массы времени и труда, жертв, упорства, верности делу, которое продолжается многие годы.",
+                "author": "Автор"
+              },
+              {
+                "id": 2,
+                "text": "А теперь, – сказал я Мэтту, – не поговорить ли нам о том, что думают о вас ваши коллеги?",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 126,
+          "content": "Правило 5. Идеального поведения не бывает",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 13,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Стремление к «совершенству» может помешать просто становиться «лучше».",
+                "author": "Автор"
+              },
+              {
+                "id": 2,
+                "text": "Если бы существовал список из 39 атрибутов образцового руководителя, я никогда не стал бы утверждать, что вам нужно в полной мере обладать всеми.",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 127,
+          "content": "Правило 6. То, что поддается измерению, достижимо",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 13,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Не будь количественной меры, я, вполне вероятно, все забросил бы.",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 128,
+          "content": "Продолжение обсуждения измерений и целей",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 13,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Как только вы до конца осознаете, как важно измерить эмоциональные ценности вашей жизни, в делах труднее фактора – скажем, такого: сможете ли вы подтвердить свой количественно измеряемой цели, повышает вероятность ее достижения.",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 129,
+          "content": "Правило 7. Переведите результат в денежное выражение — и найдете решение",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 13,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Вы можете монетизировать наказание и покончить с проблемой. Или вы можете придать положительному результату денежное выражение и найти решение.",
+                "author": "Автор"
+              },
+              {
+                "id": 2,
+                "text": "Как я уже говорил, из десятков тысяч деловых людей, посещавших мои лекции и занятия, лишь 70 % применяли усвоенное на практике. Меня данный факт не смущает, поскольку «уровень неподатливости» = 30 %.",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 130,
+          "content": "Размышления о времени и изменениях",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 14,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Пора перестать грезить о времени, когда вы не будете заняты. Оно не наступит никогда. Ваша мечта — мираж.",
+                "author": "Автор"
+              },
+              {
+                "id": 2,
+                "text": "Если вы хотите изменить в себе хоть что-то, лучше всего начать прямо сейчас. Спросите себя: «Что я хочу изменить сейчас» — и сделайте. Этого хватит с лихвой.",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 131,
+          "content": "Глава 14. Особые проблемы руководителей. Памятка персоналу: как вести себя со мной",
+          "metadata": {
+            "isChapterStart": true,
+            "partNumber": 4,
+            "chapterNumber": 14,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Много лет одной из самых популярных развлекательных передач американского радио остается «Айимус»",
+                "author": "Автор"
+              },
+              {
+                "id": 2,
+                "text": "Персонаж Айймуса (может быть, совершенный бюрократ или характер) – привередливый брюзга. Он все время чем-нибудь недоволен",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 132,
+          "content": "Продолжение главы о руководителях и особенностях их поведения",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 14,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "У меня нет никаких сложностей с людьми и тем более — с идеями. Если у клиента проблема, моя задача – найти творческое решение.",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 133,
+          "content": "Продолжение обсуждения управленческих практик",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 14,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Памятка «Как вести себя со мной» – не только отличное упражнение по самоанализу, но верное средство наладить диалог с людьми.",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 134,
+          "content": "Не позволяйте вашим людям перегружать вас",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 14,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Решив изменить положение, она собрала сотрудников и объявила: «Отныне и впредь моя дверь в 17:45 закрывается. После этого никаких личных бесед. Общаться со мной будут только мои дети».",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 135,
+          "content": "Рекомендации по взаимодействию с руководителем",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 14,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Во-первых, она должна спросить: «Давайте оценим ваши обязанности. Как вы считаете, в какой мере мое участие совершенно необходимо, а в какой его можно свести к минимуму?»",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 136,
+          "content": "Продолжение обсуждения управленческих практик",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 14,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Кроме того, клоны не обеспечивают гибкость командной работы. Если бы, скажем, я был Майклом Джорданом и начинал создавать баскетбольную команду с нуля, я, конечно, хотел бы иметь одного игрока, подобного мне, но вдобавок еще двух-трех более высоких и мощных на средней линии",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 137,
+          "content": "Продолжение главы о руководителях",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 14,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Стоит заметить подобное поведение один раз – и вы начнете замечать его везде.",
+                "author": "Автор"
+              },
+              {
+                "id": 2,
+                "text": "Если вы руководите своими людьми так, как хотели бы, чтобы руководили вами, значит, вы забыли одну вещь: у вас в подчинении – не вы сами.",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 138,
+          "content": "Прекратите «ставить галочки»",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 14,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Этот руководитель, как и большинство других, считал, что основу эффективности организации составляет стратегия «Приказать».",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 139,
+          "content": "Избавьтесь от предрассудков в отношении своих сотрудников",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 14,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Работая с руководителями, которые удручены или сбиты с толку этой переменой в рабочей атмосфере, я первым делом разъясняю, что они скованы предрассудками в отношении своих сотрудников.",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 139,
+          "content": "Избавьтесь от предрассудков в отношении своих сотрудников",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 14,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Работая с руководителями, которые удручены или сбиты с толку этой переменой в рабочей атмосфере, я первым делом разъясняю, что они скованы предрассудками в отношении своих сотрудников.",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 140,
+          "content": "1. Я знаю, что им нужно",
+          "metadata": {
+            "isChapterStart": true,
+            "partNumber": 4,
+            "chapterNumber": 14,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Это самый значительный предрассудок. И самый легкий для осознания. Почти все экономические модели исторически исходили из предположения, что деньги – главный мотиватор для любого работника.",
+                "author": "Автор"
+              },
+              {
+                "id": 2,
+                "text": "Свободные агенты отвечают тем, что переходят к новым задачам, которые повышают знания и позволяют задействовать весь потенциал их опыта.",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 141,
+          "content": "3. Ненавижу этих эгоистов",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 14,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Думаю, все мы согласимся, что в нынешних условиях, когда «члены организации» замечены высокомобильными свободными агентами, ни один руководитель не должен быть обескуражен желанием работников позаботиться о своих интересах.",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 142,
+          "content": "4. Я всегда найду замену",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 14,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Умные руководители чувствуют ситуацию. Они начинают осознавать, что их отношения с наиболее ценными сотрудниками – это скорее стратегический альянс, нежели обычное трудовое соглашение.",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 143,
+          "content": "Прекратите наставлять тех, кого наставлять бесполезно",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 14,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Если вы попробуете изменить их, то просто будете биться головой о стену. Верьте, я знаю, о чем говорю. Прошли годы, прежде чем я понял: некоторые проблемы настолько глубоки, что невозможны. Пытем проб и ошибок я освободился от всех иллюзий относительно своих возможностей.",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 144,
+          "content": "Текст последней страницы главы 14",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": 4,
+            "chapterNumber": 14,
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Не пытайтесь исправить того, кто действует вразрез со стратегией организации.",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 145,
+          "content": "Эпилог",
+          "metadata": {
+            "isChapterStart": true,
+            "partNumber": "Epilogue",
+            "chapterNumber": "Epilogue",
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Переведите дыхание. Сделайте глубокий вдох.",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 146,
+          "content": "Продолжение эпилога",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": "Epilogue",
+            "chapterNumber": "Epilogue",
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Вы – здесь. Но вы можете оказаться там!",
+                "author": "Автор"
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 147,
+          "content": "Приложение",
+          "metadata": {
+            "isChapterStart": true,
+            "partNumber": "Appendix",
+            "chapterNumber": "Appendix",
+            "quotes": []
+          }
+        },
+        {
+          "pageNumber": 148,
+          "content": "Международный опросный лист по лидерским качествам",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": "Appendix",
+            "chapterNumber": "International Leadership Qualities Questionnaire",
+            "quotes": []
+          }
+        },
+        {
+          "pageNumber": 149,
+          "content": "Международный опросный лист по лидерским качествам (продолжение)",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": "Appendix",
+            "chapterNumber": "International Leadership Qualities Questionnaire",
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Разрабатывает эффективную стратегию достижения цели.",
+                "author": null
+              }
+            ]
+          }
+        },
+        {
+          "pageNumber": 150,
+          "content": "Международный опросный лист по лидерским качествам (продолжение)",
+          "metadata": {
+            "isChapterStart": false,
+            "partNumber": "Appendix",
+            "chapterNumber": "International Leadership Qualities Questionnaire",
+            "quotes": [
+              {
+                "id": 1,
+                "text": "Добивается результатов, имеющих долгосрочную ценность для акционеров.",
+                "author": null
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
