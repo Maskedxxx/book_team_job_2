@@ -1,4 +1,4 @@
-# src/gigachat/client.py
+# src/gigachat_init/client.py
 
 """
 Основной клиент для работы с GigaChat API.
