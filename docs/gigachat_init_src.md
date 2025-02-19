@@ -30,12 +30,12 @@ INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 
 ### **1. Получение актуального токена**
 - **Метод:** `GET`
-- **URL:** `/token`
+- **URL:** `/token/token`
 - **Описание:** Возвращает текущий токен GigaChat.
 
 **Пример запроса:**
 ```bash
-curl http://127.0.0.1:8000/token
+curl http://127.0.0.1:8000/token/token
 ```
 
 **Пример ответа:**
@@ -54,7 +54,7 @@ curl http://127.0.0.1:8000/token
 
 **Пример запроса:**
 ```bash
-curl http://127.0.0.1:8000/token/info
+curl http://127.0.0.1:8000/token/token/info
 ```
 
 **Пример ответа:**
@@ -74,7 +74,7 @@ curl http://127.0.0.1:8000/token/info
 
 **Пример запроса:**
 ```bash
-curl -X POST http://127.0.0.1:8000/token/refresh
+curl -X POST http://127.0.0.1:8000/token/token/refresh
 ```
 
 **Пример ответа:**
@@ -94,7 +94,7 @@ curl -X POST http://127.0.0.1:8000/token/refresh
 ```python
 import requests
 
-response = requests.get("http://127.0.0.1:8000/token")
+response = requests.get("http://127.0.0.1:8000/token/token")
 data = response.json()
 print(f"Текущий токен: {data['access_token']}")
 ```
@@ -102,7 +102,7 @@ print(f"Текущий токен: {data['access_token']}")
 ### **Пример обновления токена в Python**
 
 ```python
-response = requests.post("http://127.0.0.1:8000/token/refresh")
+response = requests.post("http://127.0.0.1:8000/token/token/refresh")
 data = response.json()
 print(f"Обновленный токен: {data['access_token']}")
 ```

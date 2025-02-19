@@ -10,7 +10,8 @@ class Settings(BaseSettings):
     kniga_path: str = "data/row/goldsmith/kniga_full_content.json"
 
     model_config = ConfigDict(
-        env_file='.env'
+        env_file='.env',
+        extra='ignore'
     )
 
 # Экземпляр настроек, который можно импортировать в другие модули

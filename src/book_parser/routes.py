@@ -12,7 +12,7 @@ from src.book_parser.logger import get_logger
 
 logger = get_logger(__name__)
 
-router = APIRouter(prefix="/api", tags=["book_parser"])
+router = APIRouter(prefix="/parser", tags=["book_parser"])
 
 @router.get("/parts", response_model=Dict)
 def parts() -> Dict:

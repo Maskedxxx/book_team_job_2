@@ -30,12 +30,12 @@ INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
 
 ### **1. Получение списка частей книги**
 - **Метод:** `GET`
-- **URL:** `/api/parts`
+- **URL:** `/parser/parts`
 - **Описание:** Возвращает список всех частей книги с их описаниями.
 
 **Пример запроса:**
 ```bash
-curl http://127.0.0.1:8001/api/parts
+curl http://127.0.0.1:8001/parser/parts
 ```
 
 **Пример ответа:**
@@ -54,12 +54,12 @@ curl http://127.0.0.1:8001/api/parts
 
 ### **2. Получение глав для конкретной части**
 - **Метод:** `GET`
-- **URL:** `/api/parts/{part_number}/chapters`
+- **URL:** `/parser/parts/{part_number}/chapters`
 - **Описание:** Возвращает список глав для указанной части книги.
 
 **Пример запроса:**
 ```bash
-curl http://127.0.0.1:8001/api/parts/1/chapters
+curl http://127.0.0.1:8001/parser/parts/1/chapters
 ```
 
 **Пример ответа:**
@@ -78,12 +78,12 @@ curl http://127.0.0.1:8001/api/parts/1/chapters
 
 ### **3. Получение подглав**
 - **Метод:** `GET`
-- **URL:** `/api/parts/{part_number}/chapters/{chapter_number}/subchapters`
+- **URL:** `/parser/parts/{part_number}/chapters/{chapter_number}/subchapters`
 - **Описание:** Возвращает список подглав для указанной главы.
 
 **Пример запроса:**
 ```bash
-curl http://127.0.0.1:8001/api/parts/1/chapters/1/subchapters
+curl http://127.0.0.1:8001/parser/parts/1/chapters/1/subchapters
 ```
 
 **Пример ответа:**
@@ -102,12 +102,12 @@ curl http://127.0.0.1:8001/api/parts/1/chapters/1/subchapters
 
 ### **4. Получение содержимого подглавы**
 - **Метод:** `GET`
-- **URL:** `/api/subchapters/{subchapter_number}/content`
+- **URL:** `/parser/subchapters/{subchapter_number}/content`
 - **Описание:** Возвращает текстовое содержимое указанной подглавы.
 
 **Пример запроса:**
 ```bash
-curl http://127.0.0.1:8001/api/subchapters/1.1.1/content
+curl http://127.0.0.1:8001/parser/subchapters/1.1.1/content
 ```
 
 **Пример ответа:**
