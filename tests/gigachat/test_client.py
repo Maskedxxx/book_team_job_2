@@ -1,3 +1,5 @@
+# tests/gigachat/test_client.py
+
 """
 Тесты для клиента GigaChat API.
 """
@@ -5,17 +7,16 @@
 import pytest
 from datetime import datetime
 from src.gigachat_init.client import GigaChatClient
-
 from src.gigachat_init.logger import get_logger
 
-logger = get_logger(__name__) 
+logger = get_logger(__name__)
 
 def test_client_initialization():
     """
     Тестирование инициализации клиента и работы с токеном.
     """
     try:
-        # Создаем клиент
+        # Создаем клиента
         client = GigaChatClient()
         
         # Проверяем, что токен получен
@@ -35,11 +36,12 @@ def test_client_initialization():
         assert isinstance(expires_at, datetime)
         assert expires_at > datetime.now()
         
-        logger("Тесты клиента успешно пройдены!")
+        logger.info("Тесты клиента успешно пройдены!")
         
     except Exception as e:
-        logger(f"Ошибка при тестировании клиента: {e}")
+        logger.error(f"Ошибка при тестировании клиента: {e}")
         raise
+
     
 if __name__ == "__main__":
     test_client_initialization()

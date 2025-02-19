@@ -30,12 +30,12 @@ INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 
 ### **1. Получение актуального токена**
 - **Метод:** `GET`
-- **URL:** `/token`
+- **URL:** `/token/token`
 - **Описание:** Возвращает текущий токен GigaChat.
 
 **Пример запроса:**
 ```bash
-curl http://127.0.0.1:8000/token
+curl http://127.0.0.1:8000/token/token
 ```
 
 **Пример ответа:**
@@ -54,7 +54,7 @@ curl http://127.0.0.1:8000/token
 
 **Пример запроса:**
 ```bash
-curl http://127.0.0.1:8000/token/info
+curl http://127.0.0.1:8000/token/token/info
 ```
 
 **Пример ответа:**
@@ -74,7 +74,7 @@ curl http://127.0.0.1:8000/token/info
 
 **Пример запроса:**
 ```bash
-curl -X POST http://127.0.0.1:8000/token/refresh
+curl -X POST http://127.0.0.1:8000/token/token/refresh
 ```
 
 **Пример ответа:**
@@ -94,7 +94,7 @@ curl -X POST http://127.0.0.1:8000/token/refresh
 ```python
 import requests
 
-response = requests.get("http://127.0.0.1:8000/token")
+response = requests.get("http://127.0.0.1:8000/token/token")
 data = response.json()
 print(f"Текущий токен: {data['access_token']}")
 ```
@@ -102,14 +102,56 @@ print(f"Текущий токен: {data['access_token']}")
 ### **Пример обновления токена в Python**
 
 ```python
-response = requests.post("http://127.0.0.1:8000/token/refresh")
+response = requests.post("http://127.0.0.1:8000/token/token/refresh")
 data = response.json()
 print(f"Обновленный токен: {data['access_token']}")
 ```
 
 ---
 
-## 4. Дополнительно
+## 4. Тестирование сервиса
+
+### Структура тестов
+Тесты расположены в директории `tests/gigachat/` и включают:
+- `test_auth.py` - тесты аутентификации и работы с токенами
+- `test_client.py` - тесты клиента GigaChat
+
+### Запуск тестов
+Есть несколько способов запуска тестов:
+
+1. Запуск всех тестов:
+```bash
+pytest tests/gigachat/
+```
+
+2. Запуск конкретного тестового файла:
+```bash
+pytest tests/gigachat/test_auth.py
+```
+
+3. Запуск с подробным выводом:
+```bash
+pytest -v tests/gigachat/
+```
+
+4. Запуск с отключением предупреждений:
+```bash
+pytest -p no:warnings tests/gigachat/
+```
+
+### Основные тестовые сценарии:
+1. Тесты аутентификации (`test_auth.py`):
+   - Получение токена GigaChat
+   - Проверка валидности токена
+   - Автоматическое обновление токена
+   
+2. Тесты клиента (`test_client.py`):
+   - Инициализация клиента
+   - Работа с токеном
+   - Проверка информации о токене
+
+
+## Дополнительно
 - Сервис реализован на **FastAPI** и работает с **Uvicorn**.
 - Используется клиент `GigaChatClient` для получения и обновления токенов.
 - Логирование операций включено в сервис (см. `src/gigachat_init/logger.py`).

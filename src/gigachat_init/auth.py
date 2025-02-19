@@ -1,10 +1,11 @@
-# src/gigachat/auth.py
+# src/gigachat_init/auth.py
 
 import requests
 import uuid
 from datetime import datetime
 from typing import Dict, Union, Tuple, Optional
 from .logger import get_logger
+from .config import settings
 
 logger = get_logger(__name__) 
 
@@ -21,20 +22,20 @@ def get_gigachat_token() -> Dict[str, str]:
         requests.RequestException: При ошибке выполнения запроса
     """
     logger.info("Получение токена GigaChat")
-    url = "https://ngw.devices.sberbank.ru:9443/api/v2/oauth"
+    url = settings.gigachat_url
     
     headers = {
         "Content-Type": "application/x-www-form-urlencoded",
         "Accept": "application/json",
         "RqUID": str(uuid.uuid4()),  # Генерируем уникальный ID для каждого запроса
-        "Authorization": "Basic YzFlNmE1N2QtOTkzNy00MGQxLWFmNzQtMDZjMmRlNjA5NWFmOmU4MWIyZmVhLTcyOTEtNDllNC1hZmJhLTZjMDE3NmFlMjU3Zg=="
+        "Authorization": settings.auth_header
     }
     
     data = {
-        "scope": "GIGACHAT_API_PERS"
+        "scope": settings.token_scope
     }
     
-    response = requests.post(url, headers=headers, data=data, verify=False)
+    response = requests.post(url, headers=headers, data=data, verify=settings.verify_ssl)
     response.raise_for_status()  # Проверяем на ошибки HTTP
     
     return response.json()  # Автоматически преобразует JSON в словарь Python
