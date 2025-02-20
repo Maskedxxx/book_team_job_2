@@ -1,18 +1,20 @@
 # src/book_parser/config.py
 
-from pydantic_settings import BaseSettings
+from src.config import BaseAppSettings
 from pydantic import ConfigDict
 
-class Settings(BaseSettings):
-    # Путь к файлу с картой знаний
-    know_map_path: str = "data/knowledge_maps/goldsmith/know_map_full.json"
-    # Путь к файлу с распарсенной книгой
-    kniga_path: str = "data/row/goldsmith/kniga_full_content.json"
+class BookParserSettings(BaseAppSettings):
+    """
+    Настройки для сервиса парсинга книг.
+    """
+
+    know_map_path: str 
+    kniga_path: str
 
     model_config = ConfigDict(
         env_file='.env',
-        extra='ignore'
+        env_prefix='BOOK_PARSER_'
     )
 
 # Экземпляр настроек, который можно импортировать в другие модули
-settings = Settings()
+settings = BookParserSettings()

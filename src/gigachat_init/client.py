@@ -6,8 +6,8 @@
 """
 from typing import Dict, Optional
 from datetime import datetime
-from .auth import get_gigachat_token, is_token_valid, ensure_fresh_token
-from .logger import get_logger
+from src.gigachat_init.auth import get_gigachat_token, is_token_valid, ensure_fresh_token
+from src.gigachat_init.logger import get_logger
 
 logger = get_logger(__name__) 
 

@@ -1,23 +1,21 @@
-from pydantic_settings import BaseSettings
+# src/gigachat_init/config.py
+
+from src.config import BaseAppSettings
 from pydantic import ConfigDict
 
-class Settings(BaseSettings):
-    # URL для получения токена GigaChat
-    gigachat_url: str = "https://ngw.devices.sberbank.ru:9443/api/v2/oauth"
-    
-    # Заголовок авторизации из переменных окружения
+class GigaChatInitSettings(BaseAppSettings):
+    """
+    Настройки для сервиса инициализации GigaChat.
+    """
+    auth_url: str
     auth_header: str
-    
-    # Скоуп для запроса токена
-    token_scope: str = "GIGACHAT_API_PERS"
-    
-    # Флаг проверки SSL-сертификата
+    token_scope: str
     verify_ssl: bool = False
+    gigachat_base_url: str
 
     model_config = ConfigDict(
         env_file='.env',
-        env_prefix='GIGACHAT_'  # Добавляем префикс для переменных
+        env_prefix='GIGACHAT_INIT_'
     )
 
-# Экземпляр настроек, который можно импортировать в другие модули
-settings = Settings()
+settings = GigaChatInitSettings()
