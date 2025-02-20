@@ -1,11 +1,11 @@
 # src/llm_search_and_answer/services.py
 
-import time
 import re
 import httpx
 
 from openai import OpenAI
 from pydantic import BaseModel
+import instructor
 
 from src.llm_search_and_answer.prompts import SYSTEM_PROMPT_PART, SYSTEM_PROMPT_CHAPTER, SYSTEM_PROMPT_SUBCHAPTER, SYSTEM_PROMPT_FINAL
 from src.gigachat_init.config import settings
@@ -31,8 +31,8 @@ def get_access_token() -> str:
     except Exception as e:
         logger.error(f"Ошибка при получении access_token: {e}")
         raise
-
-def create_llm_client() -> OpenAI:
+    
+def create_llm_client_openai() -> OpenAI:
     """
     Создаёт клиента OpenAI с отключенной проверкой SSL,
     подставляет base_url из settings и токен, полученный от локального эндпоинта.
@@ -45,6 +45,18 @@ def create_llm_client() -> OpenAI:
         base_url=settings.gigachat_base_url,
         http_client=http_client
     )
+    return client
+
+def create_llm_client():
+    """
+    Создаёт клиента OpenAI с отключенной проверкой SSL,
+    подставляет base_url из settings и токен, полученный от локального эндпоинта.
+    """
+    token = get_access_token()
+    http_client = httpx.Client(verify=False)
+
+    client = instructor.from_openai(OpenAI(api_key=token, base_url=settings.gigachat_base_url,http_client=http_client), 
+                                    mode=instructor.Mode.JSON_SCHEMA)
     return client
 
 
@@ -158,52 +170,44 @@ def robust_json_parse(model: BaseModel, text: str) -> BaseModel:
 # 5. Функции для взаимодействия с LLM на каждом шаге
 # --------------------------------------------------------------------
 def get_book_part_reasoning(
-    client: OpenAI,
+    client,
     system_prompt: str,
     content_parts: str,
     question_user: str,
-    max_retries: int = 3
 ) -> BookPartReasoning:
     """
     Шаг 1: Выбор части книги.
     Парсим ответ в формате BookPartReasoning (pydantic).
     """
-    for attempt in range(max_retries):
-        try:
-            # Используем метод .parse() (если у вас есть GigaChat Beta API),
-            # ИЛИ обычный .create(), а потом robust_json_parse(...)
-            response = client.beta.chat.completions.parse(
-                model="GigaChat-Max",
-                temperature=0,
-                messages=[
-                    {"role": "system", "content": f"ИНСТРУКЦИИ: {system_prompt}"},
-                    {"role": "user", "content": (
-                        f"Описания частей книги: {content_parts}\n"
-                        f"Вопрос пользователя: {question_user}"
-                        """\nНАПОМИНАЮ pydantic СХЕМУ ОТВЕТА:
-                        {
-                            "initial_analysis": "...",
-                            "chapter_comparison": "...",
-                            "final_answer": "...",
-                            "selected_part": 2
-                        }"""
-                    )}
-                ],
-                response_format=BookPartReasoning,  # Если beta API умеет сразу парсить
-            )
-            return response.choices[0].message.parsed
-
-        except Exception as e:
-            logger.warning(f"Попытка {attempt + 1}/{max_retries} не удалась: {e}")
-
-            if attempt == max_retries - 1:
-                # Делаем fallback на robust_json_parse, если используете .create()
-                # Или просто выбрасываем исключение.
-                raise
-            time.sleep(1)  # Пауза и повтор
+    try:
+        response = client.chat.completions.create(
+            model="GigaChat-Max",
+            response_model=BookPartReasoning,
+            temperature=0,
+            messages=[
+                {"role": "system", "content": f"ИНСТРУКЦИИ: {system_prompt}"},
+                {"role": "user", "content": (
+                    f"Описания частей книги: {content_parts}\n"
+                    f"Вопрос пользователя: {question_user}"
+                    """
+                    \nНАПОМИНАЮ pydantic СХЕМУ ОТВЕТА:
+                    {
+                        "initial_analysis": "...",
+                        "chapter_comparison": "...",
+                        "final_answer": "...",
+                        "selected_part": 2
+                    }
+                    """
+                )}
+            ],
+        )
+        return response
+    except Exception as e:
+        logger.warning(f"Ошибка при выполнении запроса: {e}")
+        raise
 
 def get_chapter_reasoning(
-    client: OpenAI,
+    client,
     system_prompt: str,
     chapters_content: str,
     question_user: str
@@ -211,8 +215,9 @@ def get_chapter_reasoning(
     """
     Шаг 2: Выбор конкретной главы.
     """
-    response = client.beta.chat.completions.parse(
+    response = client.chat.completions.create(
         model="GigaChat-Max",
+        response_model=ChapterReasoning,
         temperature=0,
         messages=[
             {"role": "system", "content": f"ИНСТРУКЦИИ: {system_prompt}"},
@@ -228,12 +233,11 @@ def get_chapter_reasoning(
                 }"""
             )}
         ],
-        response_format=ChapterReasoning,
     )
-    return response.choices[0].message.parsed
+    return response
 
 def get_subchapter_reasoning(
-    client: OpenAI,
+    client,
     system_prompt: str,
     subchapters_content: str,
     question_user: str
@@ -241,8 +245,9 @@ def get_subchapter_reasoning(
     """
     Шаг 3: Выбор подглавы.
     """
-    response = client.beta.chat.completions.parse(
+    response = client.chat.completions.create(
         model="GigaChat-Max",
+        response_model=SubchapterReasoning,
         temperature=0,
         messages=[
             {"role": "system", "content": f"ИНСТРУКЦИИ: {system_prompt}"},
@@ -258,9 +263,8 @@ def get_subchapter_reasoning(
                 }"""
             )}
         ],
-        response_format=SubchapterReasoning,
     )
-    return response.choices[0].message.parsed
+    return response
 
 def get_final_answer(
     client: OpenAI,
@@ -303,6 +307,7 @@ def run_full_reasoning_pipeline(user_question: str) -> dict:
     logger.info("Запуск полного пайплайна LLM-рассуждения...")
 
     # 0) Создаём LLM-клиент
+    client_openai = create_llm_client_openai()
     client = create_llm_client()
 
     # ---------------------------------------
@@ -354,7 +359,7 @@ def run_full_reasoning_pipeline(user_question: str) -> dict:
     final_content = fetch_subchapter_text(selected_subchapter)
     SYSTEM_PROMPT_FINAL_1 = SYSTEM_PROMPT_FINAL
     final_answer_text = get_final_answer(
-        client,
+        client_openai,
         SYSTEM_PROMPT_FINAL_1,
         final_content,
         user_question
