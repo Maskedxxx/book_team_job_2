@@ -3,6 +3,7 @@
 import pytest
 import respx
 import httpx
+import json
 from src.llm_search_and_answer import services
 from src.llm_search_and_answer.models import BookPartReasoning
 
@@ -86,51 +87,72 @@ def test_robust_json_parse_failure():
 # --- Фейковые реализации для LLM-рассуждений ---
 
 def fake_parse_book_part_reasoning(*args, **kwargs):
-    from src.llm_search_and_answer.models import BookPartReasoning
-    fake_parsed = BookPartReasoning(
-        initial_analysis="analysis",
-        chapter_comparison="comparison",
-        final_answer="final answer",
-        selected_part=1
-    )
+    fake_parsed = {
+        "initial_analysis": "analysis",
+        "chapter_comparison": "comparison",
+        "final_answer": "final answer",
+        "selected_part": 1
+    }
     class FakeMessage:
-        parsed = fake_parsed
+        def model_dump_json(self):
+            import json
+            return json.dumps(fake_parsed)
+        content = json.dumps(fake_parsed)  # Добавляем content для create
     class FakeChoice:
         message = FakeMessage()
     class FakeResponse:
         choices = [FakeChoice()]
+        # Добавляем те же атрибуты, что и у модели
+        initial_analysis = fake_parsed["initial_analysis"]
+        chapter_comparison = fake_parsed["chapter_comparison"]
+        final_answer = fake_parsed["final_answer"] 
+        selected_part = fake_parsed["selected_part"]
     return FakeResponse()
 
 def fake_parse_chapter_reasoning(*args, **kwargs):
-    from src.llm_search_and_answer.models import ChapterReasoning
-    fake_parsed = ChapterReasoning(
-        preliminary_analysis="pre-analysis",
-        chapter_analysis="chapter analysis",
-        final_reasoning="final reasoning",
-        selected_chapter=2
-    )
+    fake_parsed = {
+        "preliminary_analysis": "pre-analysis",
+        "chapter_analysis": "chapter analysis",
+        "final_reasoning": "final reasoning",
+        "selected_chapter": 2
+    }
     class FakeMessage:
-        parsed = fake_parsed
+        def model_dump_json(self):
+            import json
+            return json.dumps(fake_parsed)
+        content = json.dumps(fake_parsed)  # Добавляем content для create
     class FakeChoice:
         message = FakeMessage()
     class FakeResponse:
         choices = [FakeChoice()]
+        # Добавляем те же атрибуты, что и у модели
+        preliminary_analysis = fake_parsed["preliminary_analysis"]
+        chapter_analysis = fake_parsed["chapter_analysis"]
+        final_reasoning = fake_parsed["final_reasoning"]
+        selected_chapter = fake_parsed["selected_chapter"]
     return FakeResponse()
 
 def fake_parse_subchapter_reasoning(*args, **kwargs):
-    from src.llm_search_and_answer.models import SubchapterReasoning
-    fake_parsed = SubchapterReasoning(
-        preliminary_analysis="sub pre-analysis",
-        subchapter_analysis="subchapter analysis",
-        final_reasoning="sub final reasoning",
-        selected_subchapter="1.1"
-    )
+    fake_parsed = {
+        "preliminary_analysis": "sub pre-analysis",
+        "subchapter_analysis": "subchapter analysis",
+        "final_reasoning": "sub final reasoning",
+        "selected_subchapter": "1.1.1"
+    }
     class FakeMessage:
-        parsed = fake_parsed
+        def model_dump_json(self):
+            import json
+            return json.dumps(fake_parsed)
+        content = json.dumps(fake_parsed)  # Добавляем content для create
     class FakeChoice:
         message = FakeMessage()
     class FakeResponse:
         choices = [FakeChoice()]
+        # Добавляем те же атрибуты, что и у модели
+        preliminary_analysis = fake_parsed["preliminary_analysis"]
+        subchapter_analysis = fake_parsed["subchapter_analysis"]
+        final_reasoning = fake_parsed["final_reasoning"]
+        selected_subchapter = fake_parsed["selected_subchapter"]
     return FakeResponse()
 
 def fake_create_final_answer(*args, **kwargs):
@@ -167,23 +189,23 @@ def create_fake_llm_client():
 
 def test_get_book_part_reasoning(monkeypatch):
     fake_client = create_fake_llm_client()
-    monkeypatch.setattr(fake_client.beta.chat.completions, "parse", fake_parse_book_part_reasoning)
+    monkeypatch.setattr(fake_client.chat.completions, "create", fake_parse_book_part_reasoning)
     result = services.get_book_part_reasoning(fake_client, "dummy prompt", "dummy content", "dummy question")
     assert result.selected_part == 1
     assert result.initial_analysis == "analysis"
 
 def test_get_chapter_reasoning(monkeypatch):
     fake_client = create_fake_llm_client()
-    monkeypatch.setattr(fake_client.beta.chat.completions, "parse", fake_parse_chapter_reasoning)
+    monkeypatch.setattr(fake_client.chat.completions, "create", fake_parse_chapter_reasoning)
     result = services.get_chapter_reasoning(fake_client, "dummy prompt", "dummy chapters content", "dummy question")
     assert result.selected_chapter == 2
     assert result.preliminary_analysis == "pre-analysis"
 
 def test_get_subchapter_reasoning(monkeypatch):
     fake_client = create_fake_llm_client()
-    monkeypatch.setattr(fake_client.beta.chat.completions, "parse", fake_parse_subchapter_reasoning)
+    monkeypatch.setattr(fake_client.chat.completions, "create", fake_parse_subchapter_reasoning)
     result = services.get_subchapter_reasoning(fake_client, "dummy prompt", "dummy subchapters content", "dummy question")
-    assert result.selected_subchapter == "1.1"
+    assert result.selected_subchapter == "1.1.1"
     assert result.subchapter_analysis == "subchapter analysis"
 
 def test_get_final_answer(monkeypatch):

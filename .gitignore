@@ -24,5 +24,7 @@ env/
 .cache/
 *.cache
 
+tests/shit_tests
+
 # Игнорировать конфиденциальные файлы
 .env
