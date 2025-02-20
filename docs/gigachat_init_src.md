@@ -41,7 +41,8 @@ curl http://127.0.0.1:8000/token/token
 **Пример ответа:**
 ```json
 {
-    "access_token": "abcdef1234567890"
+    "access_token": "abcdef1234567890",
+    "expires_at": 1739952986591
 }
 ```
 

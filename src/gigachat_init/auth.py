@@ -4,8 +4,8 @@ import requests
 import uuid
 from datetime import datetime
 from typing import Dict, Union, Tuple, Optional
-from .logger import get_logger
-from .config import settings
+from src.gigachat_init.logger import get_logger
+from src.gigachat_init.config import settings
 
 logger = get_logger(__name__) 
 
@@ -22,7 +22,7 @@ def get_gigachat_token() -> Dict[str, str]:
         requests.RequestException: При ошибке выполнения запроса
     """
     logger.info("Получение токена GigaChat")
-    url = settings.gigachat_url
+    url = settings.auth_url
     
     headers = {
         "Content-Type": "application/x-www-form-urlencoded",
