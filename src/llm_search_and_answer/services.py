@@ -2,12 +2,13 @@
 
 import re
 import httpx
+import json
 
 from openai import OpenAI
 from pydantic import BaseModel
 import instructor
 
-from src.llm_search_and_answer.prompts import SYSTEM_PROMPT_PART, SYSTEM_PROMPT_CHAPTER, SYSTEM_PROMPT_SUBCHAPTER, SYSTEM_PROMPT_FINAL
+from src.llm_search_and_answer.prompts import SYSTEM_PROMPT_PART, SYSTEM_PROMPT_CHAPTER, SYSTEM_PROMPT_SUBCHAPTER, SYSTEM_PROMPT_FINAL, SYSTEM_PROMPT_MENTOR_ASSESSMENT
 from src.gigachat_init.config import settings
 from src.llm_search_and_answer.models import (
     BookPartReasoning,
@@ -111,13 +112,49 @@ def fetch_subchapters_content(part_number: int, chapter_number: int) -> str:
 def fetch_subchapter_text(subchapter_number: str) -> str:
     """
     Запрашивает у сервиса /parser/subchapters/{subchapter_number}/content
-    текстовое содержимое указанной подглавы.
+    текстовое содержимое указанной подглавы, выполняет предобработку и возвращает
+    структурированный текст с префиксами и постфиксами, удобными для понимания LLM.
+    
+    Из полученного объекта:
+      - Извлекается subchapter_title,
+      - Из списка pages берутся номера страниц и summary каждой страницы.
+      
+    Формат итогового текста:
+      Контекст: вот имя главы <subchapter_title>, вот номера страницы этой главы <номера через запятую>, 
+      вот выжимка текста каждой страницы: <Номер страницы: summary, Номер страницы: summary, ...>.
+      
+      Содержимое content (полный текст страницы) остаётся без изменений.
     """
     try:
         url = f"http://127.0.0.1:8001/parser/subchapters/{subchapter_number}/content"
         r = httpx.get(url, verify=False)
         r.raise_for_status()
-        return r.text
+        raw_text = r.text
+
+        # Пробуем распарсить полученный текст как JSON
+        data = json.loads(raw_text)
+        # Если API оборачивает результат в ключ "content", берем данные из него
+        if "content" in data and isinstance(data["content"], dict):
+            data = data["content"]
+
+        subchapter_title = data.get("subchapter_title", "Неизвестный заголовок")
+        pages = data.get("pages", [])
+
+        # Извлекаем номера страниц (просто цифры)
+        page_numbers = [str(page.get("page_number", "")) for page in pages if page.get("page_number") is not None]
+        # Формируем выжимку текста для каждой страницы в виде "Номер страницы: summary"
+        page_summaries = [
+            f"{page.get('page_number')}: {page.get('summary', '').strip()}" 
+            for page in pages if page.get("page_number") is not None
+        ]
+
+        formatted_text = (
+            f"Контекст: вот имя подглавы <title>{subchapter_title}</title>,\n\n"
+            f"Вот номера страницы этой подглавы <number_pages>{', '.join(page_numbers)}</number_pages>,\n\n"
+            f"Вот выжимка текста каждой страницы: \n<summary>{',\n '.join(page_summaries)}</summary>"
+        )
+
+        return formatted_text
     except Exception as e:
         logger.error(f"fetch_subchapter_text: {e}")
         raise
@@ -293,83 +330,42 @@ def get_final_answer(
 # 6. Пример комплексной функции (все 4 шага) — опционально
 # --------------------------------------------------------------------
 def run_full_reasoning_pipeline(user_question: str) -> dict:
-    """
-    Примерная функция, которая последовательно выполняет все 4 шага:
-    1) получает список частей -> get_book_part_reasoning
-    2) получает главы выбранной части -> get_chapter_reasoning
-    3) получает подглавы выбранной главы -> get_subchapter_reasoning
-    4) извлекает текст подглавы -> get_final_answer
+    logger.info("Запуск нового пайплайна LLM-рассуждения для всех подглав...")
 
-    Возвращает итоговый словарь с данными рассуждения и финальным ответом.
-    Это просто демонстрация; на практике вы можете сделать несколько эндпоинтов.
-    """
+    # Фиксированный список номеров подглав для финального ответа
+    available_subchapters = ['3.11.1', '3.11.2', '3.11.3', '3.12.1', '3.12.2']
 
-    logger.info("Запуск полного пайплайна LLM-рассуждения...")
-
-    # 0) Создаём LLM-клиент
+    # Создаем LLM-клиент для финального ответа
     client_openai = create_llm_client_openai()
-    client = create_llm_client()
 
-    # ---------------------------------------
-    # ШАГ 1: Получаем все части из parser
-    # ---------------------------------------
-    content_parts = fetch_content_parts()
-    # (SYSTEM_PROMPT_PART — ваш системный промпт для шага 1)
-    SYSTEM_PROMPT_PART_1 = SYSTEM_PROMPT_PART
-    part_reasoning = get_book_part_reasoning(
-        client,
-        SYSTEM_PROMPT_PART_1,
-        content_parts,
-        user_question
-    )
-    selected_part = part_reasoning.selected_part
-    logger.info(f"Шаг 1 завершён. Выбранная часть книги: {selected_part}")
+    # Получаем тексты для всех подглав и объединяем их
+    final_contents = []
+    for subchapter in available_subchapters:
+        try:
+            content = fetch_subchapter_text(subchapter)
+            # Обрамляем текст подглавы идентификатором для удобства в финальном контенте
+            final_contents.append(f"<content_subchapter id='{subchapter}'>\n{content}\n</content_subchapter>")
+            logger.info(f"Получен текст подглавы {subchapter}")
+        except Exception as e:
+            logger.error(f"Ошибка получения текста для подглавы {subchapter}: {e}")
 
-    # ---------------------------------------
-    # ШАГ 2: Получаем главы для выбранной части
-    # ---------------------------------------
-    chapters_content = fetch_chapters_content(selected_part)
-    SYSTEM_PROMPT_CHAPTER_1 = SYSTEM_PROMPT_CHAPTER
-    chapter_reasoning = get_chapter_reasoning(
-        client,
-        SYSTEM_PROMPT_CHAPTER_1,
-        chapters_content,
-        user_question
-    )
-    selected_chapter = chapter_reasoning.selected_chapter
-    logger.info(f"Шаг 2 завершён. Выбранная глава: {selected_chapter}")
-
-    # ---------------------------------------
-    # ШАГ 3: Получаем подглавы для выбранной главы
-    # ---------------------------------------
-    subchapters_content = fetch_subchapters_content(selected_part, selected_chapter)
-    SYSTEM_PROMPT_SUBCHAPTER_1 = SYSTEM_PROMPT_SUBCHAPTER
-    subchapter_reasoning = get_subchapter_reasoning(
-        client,
-        SYSTEM_PROMPT_SUBCHAPTER_1,
-        subchapters_content,
-        user_question
-    )
-    selected_subchapter = subchapter_reasoning.selected_subchapter
-    logger.info(f"Шаг 3 завершён. Выбранная подглава: {selected_subchapter}")
-
-    # ---------------------------------------
-    # ШАГ 4: Получаем содержимое подглавы и формируем финальный ответ
-    # ---------------------------------------
-    final_content = fetch_subchapter_text(selected_subchapter)
-    SYSTEM_PROMPT_FINAL_1 = SYSTEM_PROMPT_FINAL
+    # Объединяем все тексты в один итоговый контент
+    combined_final_content = "\n".join(final_contents)
+    logger.info(f"финальный контент: {combined_final_content}")
+    # Формируем финальный ответ, используя объединенный контент и вопрос пользователя
     final_answer_text = get_final_answer(
         client_openai,
-        SYSTEM_PROMPT_FINAL_1,
-        final_content,
+        SYSTEM_PROMPT_MENTOR_ASSESSMENT,
+        combined_final_content,
         user_question
     )
-    logger.info(f"Шаг 4 завершён. Итоговый ответ:\n{final_answer_text}")
+    logger.info(f"Финальный ответ:\n{final_answer_text}")
 
-    # Собираем всё в структуру для возврата
     return {
-        "part_reasoning": part_reasoning,
-        "chapter_reasoning": chapter_reasoning,
-        "subchapter_reasoning": subchapter_reasoning,
+        "selected_subchapters": available_subchapters,
+        "combined_final_content": combined_final_content,
         "final_answer": final_answer_text
     }
+    
+if __name__ == "__main__":
+    run_full_reasoning_pipeline("вопрос: Почему отслеживание работает - назовите 4 урока о которых говорит автор. Ответ: Урок первый : не каждый реагирует на процесс обучения или не так как хотелось бы организации. Урок 2; между пониманием и действием дистанция огромного размера. Урок 3: люди не становятся лучше без отслеживания")
