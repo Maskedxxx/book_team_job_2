@@ -8,8 +8,9 @@ from openai import OpenAI
 from pydantic import BaseModel
 import instructor
 
-from src.llm_search_and_answer.prompts import SYSTEM_PROMPT_PART, SYSTEM_PROMPT_CHAPTER, SYSTEM_PROMPT_SUBCHAPTER, SYSTEM_PROMPT_FINAL, SYSTEM_PROMPT_MENTOR_ASSESSMENT
+from src.llm_search_and_answer.prompts import SYSTEM_PROMPT_MENTOR_ASSESSMENT
 from src.gigachat_init.config import settings
+from src.config import settings as port_settings # Общие настройки (для портов из других сервисов)
 from src.llm_search_and_answer.models import (
     BookPartReasoning,
     ChapterReasoning,
@@ -25,7 +26,8 @@ def get_access_token() -> str:
     Возвращает строку access_token.
     """
     try:
-        response = httpx.get("http://127.0.0.1:8000/token/token", verify=False)
+        url = f"http://127.0.0.1:{port_settings.gigachat_init_port}/token/token"
+        response = httpx.get(url, verify=False)
         response.raise_for_status()
         data = response.json()
         return data["access_token"]
@@ -70,7 +72,7 @@ def fetch_content_parts() -> str:
     Возвращает строку (или JSON-строку), которую потом передадим в LLM.
     """
     try:
-        url = "http://127.0.0.1:8001/parser/parts"
+        url = f"http://127.0.0.1:{port_settings.book_parser_port}/parser/parts"
         r = httpx.get(url, verify=False)
         r.raise_for_status()
         # Допустим, parser возвращает JSON со списком частей,
@@ -87,7 +89,7 @@ def fetch_chapters_content(part_number: int) -> str:
     Возвращаем как строку или JSON.
     """
     try:
-        url = f"http://127.0.0.1:8001/parser/parts/{part_number}/chapters"
+        url = f"http://127.0.0.1:{port_settings.book_parser_port}/parser/parts/{part_number}/chapters"
         r = httpx.get(url, verify=False)
         r.raise_for_status()
         return r.text
@@ -101,7 +103,7 @@ def fetch_subchapters_content(part_number: int, chapter_number: int) -> str:
     список подглав.
     """
     try:
-        url = f"http://127.0.0.1:8001/parser/parts/{part_number}/chapters/{chapter_number}/subchapters"
+        url = f"http://127.0.0.1:{port_settings.book_parser_port}/parser/parts/{part_number}/chapters/{chapter_number}/subchapters"
         r = httpx.get(url, verify=False)
         r.raise_for_status()
         return r.text
@@ -126,7 +128,7 @@ def fetch_subchapter_text(subchapter_number: str) -> str:
       Содержимое content (полный текст страницы) остаётся без изменений.
     """
     try:
-        url = f"http://127.0.0.1:8001/parser/subchapters/{subchapter_number}/content"
+        url = f"http://127.0.0.1:{port_settings.book_parser_port}/parser/subchapters/{subchapter_number}/content"
         r = httpx.get(url, verify=False)
         r.raise_for_status()
         raw_text = r.text

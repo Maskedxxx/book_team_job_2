@@ -1,4 +1,4 @@
-# src/gigachat_init/logger.py
+# src/google_sheets/logger.py
 
 import logging
 
