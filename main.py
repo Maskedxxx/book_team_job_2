@@ -1,6 +1,7 @@
 # main.py
 import subprocess
 import sys
+from src.config import settings
 
 def run_services():
     """
@@ -8,9 +9,10 @@ def run_services():
     Каждое приложение работает в своём процессе.
     """
     services = [
-        ("src.gigachat_init.main:app", 8000),
-        ("src.book_parser.main:app", 8001),
-        ("src.llm_search_and_answer.main:app", 8100),
+        ("src.gigachat_init.main:app", settings.gigachat_init_port),
+        ("src.book_parser.main:app", settings.book_parser_port),
+        ("src.llm_search_and_answer.main:app", settings.llm_service_port),
+        ("src.google_sheets.main:app", settings.google_sheets_port),
     ]
     processes = []
     
