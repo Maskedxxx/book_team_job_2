@@ -145,6 +145,11 @@ async def process_form_submission_with_llm(row_id: str) -> Dict[str, Any]:
     # Обрабатываем каждую пару вопрос-ответ
     async with httpx.AsyncClient() as client:
         for i, qa_pair in enumerate(form_obj["qa_pairs"]):
+            # Пропускаем первую пару вопрос-ответ
+            if i == 0:
+                logger.info(f"Форма {row_id}: первая пара вопрос-ответ пропущена")
+                continue
+                
             # Пропускаем пары, уже имеющие ответ LLM
             if qa_pair.get("llm_response"):
                 continue
@@ -168,8 +173,12 @@ async def process_form_submission_with_llm(row_id: str) -> Dict[str, Any]:
             except Exception as e:
                 logger.error(f"Ошибка при обработке пары {i+1} для формы {row_id}: {str(e)}")
     
-    # Проверяем завершенность обработки
-    all_processed = all(pair.get("llm_response") for pair in form_obj["qa_pairs"])
+    # Проверяем завершенность обработки (все кроме первой пары должны быть обработаны)
+    all_processed = True
+    for i, pair in enumerate(form_obj["qa_pairs"]):
+        if i > 0 and not pair.get("llm_response"):
+            all_processed = False
+            break
     
     if all_processed:
         form_obj["processed"] = True
