@@ -3,10 +3,13 @@
 import re
 import httpx
 import json
+import os
 
 from openai import OpenAI
 from pydantic import BaseModel
 import instructor
+from langsmith.wrappers import wrap_openai
+from langsmith import traceable, Client
 
 from src.llm_search_and_answer.models import LLMEvaluation
 from src.llm_search_and_answer.prompts import SYSTEM_PROMPT_MENTOR_ASSESSMENT
@@ -53,15 +56,44 @@ def create_llm_client_openai() -> OpenAI:
 
 def create_llm_client():
     """
-    Создаёт клиента OpenAI с отключенной проверкой SSL,
-    подставляет base_url из settings и токен, полученный от локального эндпоинта.
+    Создаёт клиента OpenAI с отключенной проверкой SSL и LangSmith трейсингом.
+    Подставляет base_url из settings и токен, полученный от локального эндпоинта.
+    
+    Returns:
+        instructor клиент, обёрнутый для трейсинга
     """
+    # Получаем токен как обычно
     token = get_access_token()
+    
+    # Создаём HTTP клиент без проверки SSL
     http_client = httpx.Client(verify=False)
-
-    client = instructor.from_openai(OpenAI(api_key=token, base_url=settings.gigachat_base_url,http_client=http_client), 
-                                    mode=instructor.Mode.JSON_SCHEMA)
+    
+    # Создаём базовый OpenAI клиент
+    base_openai_client = OpenAI(
+        api_key=token, 
+        base_url=settings.gigachat_base_url,
+        http_client=http_client
+    )
+    
+    # Оборачиваем клиент для LangSmith трейсинга
+    wrapped_client = wrap_openai(base_openai_client)
+    
+    # Создаём instructor клиент из обёрнутого
+    client = instructor.from_openai(wrapped_client, mode=instructor.Mode.JSON_SCHEMA)
+    
     return client
+
+def create_langsmith_client():
+    """
+    Создаёт клиента LangSmith для трейсинга.
+    
+    Returns:
+        Client: LangSmith клиент
+    """
+    return Client(api_key=os.getenv("LANGCHAIN_API_KEY"))
+
+# Создаём глобальный клиент для трейсинга (можно использовать в декораторах)
+ls_client = create_langsmith_client()
 
 
 # --------------------------------------------------------------------
@@ -309,6 +341,7 @@ def get_subchapter_reasoning(
     )
     return response
 
+@traceable(client=ls_client, project_name="llamaindex_test", run_type = "retriever")
 def get_final_answer(
     client,
     system_prompt: str,
