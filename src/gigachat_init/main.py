@@ -1,13 +1,11 @@
 # src/gigachat_init/main.py
 
 from fastapi import FastAPI
-from src.gigachat_init.logger import get_logger
 from src.gigachat_init.routes import router as gigachat_router
 from src.config import settings
 
 
 app = FastAPI(title="GigaChat Token Service")
-logger = get_logger(__name__)
 
 # Подключаем роутер с эндпоинтами
 app.include_router(gigachat_router)

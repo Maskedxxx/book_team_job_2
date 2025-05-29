@@ -1,6 +1,6 @@
 from typing import List, Dict, Any
 from src.book_parser.models import PartOutput
-from src.book_parser.logger import get_logger
+from src.utils.logger import get_logger
 
 class ContentPartsParser:
     """
@@ -38,7 +38,7 @@ class ContentPartsParser:
             summary=part.get("summary", "Нет описания"),
             key_points=key_points_str
         )
-        self.logger.info(f"Распарсена часть: {model.title}")
+        self.logger.debug(f"Распарсена часть: {model.title}")
         return model
 
     def parse_parts(self) -> List[PartOutput]:
@@ -49,5 +49,5 @@ class ContentPartsParser:
         parts = self.data.get("content", {}).get("parts", [])
         models = [self.to_model(part) for part in parts]
         part_titles = [model.title for model in models]
-        self.logger.info(f"Успешно распарсены части: {part_titles}")
+        self.logger.debug(f"Успешно распарсены части: {part_titles}")
         return models

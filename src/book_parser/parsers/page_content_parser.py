@@ -1,6 +1,6 @@
 from typing import List, Dict, Any, Tuple
 from src.book_parser.models import PageContentOutput, PageMetadata
-from src.book_parser.logger import get_logger
+from src.utils.logger import get_logger
 
 class PageContentParser:
     """
@@ -70,9 +70,9 @@ class PageContentParser:
                         pages = sub.get("pages", [])
                         # Предполагается, что заголовок подглавы хранится в поле "title"
                         subchapter_title = sub.get("title", "Неизвестный заголовок")
-                        self.logger.info(f"Найдено страницы для подглавы {selected_subchapter}: {pages} с заголовком '{subchapter_title}'")
+                        self.logger.debug(f"Найдено страницы для подглавы {selected_subchapter}: {pages} с заголовком '{subchapter_title}'")
                         return pages, subchapter_title
-        self.logger.info(f"Страницы для подглавы {selected_subchapter} не найдены")
+        self.logger.debug(f"Страницы для подглавы {selected_subchapter} не найдены")
         return [], "Неизвестный заголовок"
 
     def get_page_content(self, page_numbers: List[int]) -> (str, str):
@@ -88,7 +88,7 @@ class PageContentParser:
             if page.get("pageNumber") in page_numbers:
                 contents.append(str(page.get("content", "")))
                 summaries.append(str(page.get("summary", "")))
-        self.logger.info(f"Получено содержимое и резюме для страниц: {page_numbers}")
+        self.logger.debug(f"Получено содержимое и резюме для страниц: {page_numbers}")
         combined_content = "\n\n".join(contents)
         combined_summary = "\n\n".join(summaries)
         return combined_content, combined_summary
@@ -113,5 +113,5 @@ class PageContentParser:
                 )
                 pages_list.append(page_metadata)
         
-        self.logger.info(f"Финальное содержимое успешно распарсено для подглавы {selected_subchapter}")
+        self.logger.debug(f"Финальное содержимое успешно распарсено для подглавы {selected_subchapter}")
         return PageContentOutput(subchapter_title=subchapter_title, pages=pages_list)

@@ -2,10 +2,7 @@
 
 from fastapi import FastAPI
 from src.llm_search_and_answer.routes import router as llm_router
-from src.llm_search_and_answer.logger import get_logger
 from src.config import settings
-
-logger = get_logger(__name__)
 
 app = FastAPI(title="LLM Search & Answer Service")
 

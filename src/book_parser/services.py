@@ -8,9 +8,9 @@ from src.book_parser.parsers.content_parts_parser import ContentPartsParser
 from src.book_parser.parsers.chapter_parser import ChapterParser
 from src.book_parser.parsers.subchapter_parser import SubchapterParser
 from src.book_parser.parsers.page_content_parser import PageContentParser
-from src.book_parser.logger import get_logger
+from src.utils.logger import get_logger
 
-logger = get_logger(__name__)
+logger = get_logger("book_parser")
 
 def load_json(file_path: Path) -> Dict[str, Any]:
     """
@@ -23,12 +23,13 @@ def load_json(file_path: Path) -> Dict[str, Any]:
         dict: Загруженные данные.
     """
     try:
-        logger.info(f"Загрузка JSON данных из файла: {file_path}")
+        logger.debug(f"Загрузка JSON: {file_path.name}")
         with file_path.open("r", encoding="utf-8") as f:
             data = json.load(f)
+        logger.debug(f"JSON загружен успешно")
         return data
     except Exception as e:
-        logger.error(f"Ошибка загрузки JSON из файла {file_path}: {e}")
+        logger.error(f"Ошибка загрузки {file_path.name}: {e}")
         raise
 
 def get_parts():
@@ -41,7 +42,9 @@ def get_parts():
     know_map_path = Path(settings.know_map_path)
     know_map_data = load_json(know_map_path)
     parser = ContentPartsParser(know_map_data)
-    return parser.parse_parts()
+    parts = parser.parse_parts()
+    logger.info(f"Получено {len(parts)} частей книги")
+    return parts
 
 def get_chapters_by_part(part_number: int):
     """
@@ -56,7 +59,9 @@ def get_chapters_by_part(part_number: int):
     know_map_path = Path(settings.know_map_path)
     know_map_data = load_json(know_map_path)
     parser = ChapterParser(know_map_data)
-    return parser.parse_chapters_by_part(part_number)
+    chapters = parser.parse_chapters_by_part(part_number)
+    logger.info(f"Для части {part_number} найдено {len(chapters)} глав")
+    return chapters
 
 def get_subchapters_by_chapter(part_number: int, chapter_number: int):
     """
@@ -72,7 +77,9 @@ def get_subchapters_by_chapter(part_number: int, chapter_number: int):
     know_map_path = Path(settings.know_map_path)
     know_map_data = load_json(know_map_path)
     parser = SubchapterParser(know_map_data)
-    return parser.parse_subchapters_by_chapter(part_number, chapter_number)
+    subchapters = parser.parse_subchapters_by_chapter(part_number, chapter_number)
+    logger.info(f"Для части {part_number}, главы {chapter_number} найдено {len(subchapters)} подглав")
+    return subchapters
 
 def get_page_content(subchapter_number: str):
     """
@@ -82,11 +89,13 @@ def get_page_content(subchapter_number: str):
         subchapter_number (str): Номер подглавы книги.
 
     Returns:
-        PageContentOutput: Модель с содержимым страниц.
+        PageContentOutput: Модель с содержимом страниц.
     """
     know_map_path = Path(settings.know_map_path)
     kniga_path = Path(settings.kniga_path)
     know_map_data = load_json(know_map_path)
     kniga_data = load_json(kniga_path)
     parser = PageContentParser(know_map_data, kniga_data)
-    return parser.parse_final_content(subchapter_number)
+    content = parser.parse_final_content(subchapter_number)
+    logger.info(f"Получен контент подглавы {subchapter_number}: {len(content.pages)} страниц")
+    return content

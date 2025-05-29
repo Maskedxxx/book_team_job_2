@@ -9,9 +9,9 @@ import httpx
 from src.google_sheets.models import QAPair, FormSubmission
 from src.google_sheets.config import settings
 from src.config import settings as port_settings
-from src.google_sheets.logger import get_logger
+from src.utils.logger import get_logger
 
-logger = get_logger(__name__)
+logger = get_logger("google_sheets")
 
 def process_form_data(form_data: Dict[str, Any]) -> FormSubmission:
     """
@@ -56,7 +56,7 @@ def process_form_data(form_data: Dict[str, Any]) -> FormSubmission:
         user_email=user_email
     )
     
-    logger.info(f"Обработана форма из строки {row_id}: создано {len(qa_pairs)} пар вопрос-ответ")
+    logger.debug(f"Обработана форма {row_id}: {len(qa_pairs)} пар Q&A, email: {user_email}")
     return submission
 
 
@@ -108,7 +108,7 @@ def save_form_submission(submission: FormSubmission) -> str:
     with open(json_file, 'w', encoding='utf-8') as f:
         json.dump(json_data, f, ensure_ascii=False, indent=2)
     
-    logger.info(f"Запись с ID {entry_id} сохранена в {json_file}")
+    logger.info(f"Форма {entry_id} сохранена")
     return entry_id
 
 async def process_form_submission_with_llm(row_id: str) -> Dict[str, Any]:
@@ -125,6 +125,8 @@ async def process_form_submission_with_llm(row_id: str) -> Dict[str, Any]:
         FileNotFoundError: Если файл с данными не найден
         ValueError: Если данные для указанного row_id не найдены
     """
+    logger.info(f"Начинаем LLM обработку формы {row_id}")
+    
     # Путь к файлу данных
     json_file = Path(settings.data_dir) / settings.form_data_filename
     
@@ -151,16 +153,18 @@ async def process_form_submission_with_llm(row_id: str) -> Dict[str, Any]:
         logger.warning(f"Форма {row_id} не содержит пар вопрос-ответ")
         return form_obj
     
+    processed_count = 0
     # Обрабатываем каждую пару вопрос-ответ
     async with httpx.AsyncClient() as client:
         for i, qa_pair in enumerate(form_obj["qa_pairs"]):
             # Пропускаем первую пару вопрос-ответ
             if i == 0:
-                logger.info(f"Форма {row_id}: первая пара вопрос-ответ пропущена")
+                logger.debug(f"Форма {row_id}: первая пара пропущена")
                 continue
                 
             # Пропускаем пары, уже имеющие ответ LLM
             if qa_pair.get("llm_response"):
+                processed_count += 1
                 continue
             
             # Формируем запрос для LLM
@@ -177,22 +181,22 @@ async def process_form_submission_with_llm(row_id: str) -> Dict[str, Any]:
                 
                 # Сохраняем ответ модели
                 form_obj["qa_pairs"][i]["llm_response"] = response.json().get("answer", "")
-                logger.info(f"Форма {row_id}: обработана пара {i+1}/{len(form_obj['qa_pairs'])}")
+                processed_count += 1
+                logger.debug(f"Форма {row_id}: обработана пара {i+1}")
                 
             except Exception as e:
                 logger.error(f"Ошибка при обработке пары {i+1} для формы {row_id}: {str(e)}")
     
     # Проверяем завершенность обработки (все кроме первой пары должны быть обработаны)
-    all_processed = True
-    for i, pair in enumerate(form_obj["qa_pairs"]):
-        if i > 0 and not pair.get("llm_response"):
-            all_processed = False
-            break
+    total_pairs = len(form_obj["qa_pairs"])
+    expected_processed = max(0, total_pairs - 1)  # Исключаем первую пару
     
-    if all_processed:
+    if processed_count >= expected_processed and expected_processed > 0:
         form_obj["processed"] = True
         form_obj["updated_at"] = datetime.now().isoformat()
-        logger.info(f"Форма {row_id} полностью обработана")
+        logger.info(f"Форма {row_id} полностью обработана ({processed_count}/{expected_processed})")
+    else:
+        logger.warning(f"Форма {row_id} обработана частично ({processed_count}/{expected_processed})")
     
     # Сохраняем результаты
     all_data["data"][row_id] = form_obj
@@ -225,7 +229,12 @@ def get_form_submission_by_row_id(row_id: str) -> Optional[Dict[str, Any]]:
             all_data = json.load(f)
         
         # Ищем запись по row_id
-        return all_data.get("data", {}).get(row_id)
+        result = all_data.get("data", {}).get(row_id)
+        if result:
+            logger.debug(f"Найдены данные для формы {row_id}")
+        else:
+            logger.debug(f"Данные для формы {row_id} не найдены")
+        return result
     
     except json.JSONDecodeError:
         logger.error(f"Ошибка формата JSON в файле {json_file}")

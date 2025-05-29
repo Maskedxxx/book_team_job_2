@@ -1,6 +1,7 @@
 from typing import List, Dict, Any
 from src.book_parser.models import ChapterOutput
-from src.book_parser.logger import get_logger
+from src.utils.logger import get_logger
+
 
 class ChapterParser:
     """
@@ -44,7 +45,7 @@ class ChapterParser:
             summary=chapter.get("summary", "Нет описания"),
             key_points=key_points_str
         )
-        self.logger.info(f"Распарсена глава: {model.title}")
+        self.logger.debug(f"Распарсена глава: {model.title}")
         return model
 
     def parse_chapters_by_part(self, selected_part: int) -> List[ChapterOutput]:
@@ -58,7 +59,7 @@ class ChapterParser:
                 chapters = part.get("chapters", [])
                 models = [self.to_model(chapter) for chapter in chapters]
                 chapter_titles = [model.title for model in models]
-                self.logger.info(f"Успешно распарсены главы: {chapter_titles}")
+                self.logger.debug(f"Успешно распарсены главы: {chapter_titles}")
                 return models
-        self.logger.info(f"Для части {selected_part} главы не найдены")
+        self.logger.warning(f"Для части {selected_part} главы не найдены")
         return []

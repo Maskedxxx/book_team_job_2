@@ -4,10 +4,10 @@ import requests
 import uuid
 from datetime import datetime
 from typing import Dict, Union, Tuple, Optional
-from src.gigachat_init.logger import get_logger
+from src.utils.logger import get_logger
 from src.gigachat_init.config import settings
 
-logger = get_logger(__name__) 
+logger = get_logger("gigachat_init") 
 
 
 def get_gigachat_token() -> Dict[str, str]:
@@ -21,7 +21,7 @@ def get_gigachat_token() -> Dict[str, str]:
     Raises:
         requests.RequestException: При ошибке выполнения запроса
     """
-    logger.info("Получение токена GigaChat")
+    logger.debug("Запрос токена GigaChat")
     url = settings.auth_url
     
     headers = {
@@ -38,6 +38,7 @@ def get_gigachat_token() -> Dict[str, str]:
     response = requests.post(url, headers=headers, data=data, verify=settings.verify_ssl)
     response.raise_for_status()  # Проверяем на ошибки HTTP
     
+    logger.info("Токен GigaChat получен успешно")
     return response.json()  # Автоматически преобразует JSON в словарь Python
 
 def is_token_valid(token_data: Dict[str, str]) -> bool:
@@ -89,7 +90,7 @@ def ensure_fresh_token(current_token: Optional[Dict[str, str]] = None) -> Dict[s
     try:
         # Проверяем, есть ли у нас токен
         if current_token is None:
-            logger.info("Токен отсутствует, получаем новый")
+            logger.debug("Токен отсутствует, получаем новый")
             return get_gigachat_token()
         
         # Проверяем валидность существующего токена
@@ -100,11 +101,11 @@ def ensure_fresh_token(current_token: Optional[Dict[str, str]] = None) -> Dict[s
             minutes_left = (expires_at - current_time) / (1000 * 60)
             
             if minutes_left > 1:  # Если осталось больше минуты
-                logger.info(f"Текущий токен действителен ещё {int(minutes_left)} минут")
+                logger.debug(f"Токен действителен ещё {int(minutes_left)} мин")
                 return current_token
         
         # Если токен истёк или близок к истечению, получаем новый
-        logger.info("Получаем новый токен")
+        logger.debug("Обновляем токен")
         return get_gigachat_token()
         
     except Exception as e:
