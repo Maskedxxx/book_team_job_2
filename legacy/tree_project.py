@@ -33,7 +33,7 @@ if __name__ == "__main__":
     project_path = "/Users/mask/Documents/Проеты_2025/book_team_job_2"  # Замените на путь к вашему проекту
 
     # Укажите файлы и папки, которые нужно исключить
-    exclude_list = [".git", "__pycache__", ".DS_Store", "__init__.py", "LOG", "legacy", "tests"]
+    exclude_list = [".git", "__pycache__", ".DS_Store", "__init__.py", "LOG", "legacy", "tests", ".pytest_cache"]
 
     if os.path.exists(project_path):
         print(project_path)

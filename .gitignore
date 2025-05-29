@@ -3,6 +3,7 @@
 
 # Игнорировать кэш Python
 __pycache__/
+.DS_Store/
 *.py[cod]
 
 # Игнорировать виртуальные окружения
@@ -23,7 +24,7 @@ env/
 # Игнорировать кэш других инструментов
 .cache/
 *.cache
-
+data/google_sheets/form_data.json
 tests/shit_tests
 
 # Игнорировать конфиденциальные файлы
