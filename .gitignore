@@ -24,6 +24,7 @@ env/
 # Игнорировать кэш других инструментов
 .cache/
 *.cache
+google_sheets/
 
 tests/shit_tests
 

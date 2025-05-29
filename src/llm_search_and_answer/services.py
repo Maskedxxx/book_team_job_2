@@ -8,6 +8,7 @@ from openai import OpenAI
 from pydantic import BaseModel
 import instructor
 
+from src.llm_search_and_answer.models import LLMEvaluation
 from src.llm_search_and_answer.prompts import SYSTEM_PROMPT_MENTOR_ASSESSMENT
 from src.gigachat_init.config import settings
 from src.config import settings as port_settings # Общие настройки (для портов из других сервисов)
@@ -150,10 +151,13 @@ def fetch_subchapter_text(subchapter_number: str) -> str:
             for page in pages if page.get("page_number") is not None
         ]
 
+        # Выносим операцию join в отдельную переменную
+        joined_summaries = ',\n '.join(page_summaries)
+
         formatted_text = (
             f"Контекст: вот имя подглавы <title>{subchapter_title}</title>,\n\n"
             f"Вот номера страницы этой подглавы <number_pages>{', '.join(page_numbers)}</number_pages>,\n\n"
-            f"Вот выжимка текста каждой страницы: \n<summary>{',\n '.join(page_summaries)}</summary>"
+            f"Вот выжимка текста каждой страницы: \n<summary>{joined_summaries}</summary>"
         )
 
         return formatted_text
@@ -306,7 +310,7 @@ def get_subchapter_reasoning(
     return response
 
 def get_final_answer(
-    client: OpenAI,
+    client,
     system_prompt: str,
     final_content: str,
     question_user: str
@@ -314,19 +318,29 @@ def get_final_answer(
     """
     Шаг 4: Формируем итоговый ответ на вопрос, используя финальный контент (извлечённый текст).
     """
-    response = client.chat.completions.create(
-        model="GigaChat-Max",
-        temperature=0.2,
-        messages=[
-            {"role": "system", "content": f"ИНСТРУКЦИИ: {system_prompt}"},
-            {"role": "user", "content": (
-                f"Финальный контент (извлечённый из страниц): <content_book>{final_content}</content_book>\n"
-                f"Вопрос пользователя: {question_user}\n"
-                "Ответь согласно ИНСТРУКЦИИ:"
-            )}
-        ],
-    )
-    return response.choices[0].message.content
+    try:
+        response = client.chat.completions.create(
+            model="GigaChat-Max",
+            response_model=LLMEvaluation,  # ← Используем новую модель
+            temperature=0.2,
+            messages=[
+                {"role": "system", "content": f"ИНСТРУКЦИИ: {system_prompt}"},
+                {"role": "user", "content": (
+                    f"Финальный контент (извлечённый из страниц): <content_book>{final_content}</content_book>\n"
+                    f"Вопрос пользователя: {question_user}\n"
+                    "Ответь согласно ИНСТРУКЦИИ в формате JSON:"
+                )}
+            ],
+        )
+        
+        # Форматируем ответ: оценка в начале, потом обоснование
+        formatted_response = f"ИТОГОВАЯ ОЦЕНКА: {response.evaluation}\n\n{response.analysis_text}"
+        return formatted_response
+        
+    except Exception as e:
+        logger.error(f"Ошибка при получении финального ответа: {e}")
+        # Возвращаем базовый ответ в случае ошибки
+        return f"ИТОГОВАЯ ОЦЕНКА: НЕВЕРНО\n\nПроизошла ошибка при анализе ответа. Обратитесь к куратору."
 
 # --------------------------------------------------------------------
 # 6. Пример комплексной функции (все 4 шага) — опционально
@@ -338,7 +352,7 @@ def run_full_reasoning_pipeline(user_question: str) -> dict:
     available_subchapters = ['3.11.1', '3.11.2', '3.11.3', '3.12.1', '3.12.2']
 
     # Создаем LLM-клиент для финального ответа
-    client_openai = create_llm_client_openai()
+    client_openai = create_llm_client()
 
     # Получаем тексты для всех подглав и объединяем их
     final_contents = []
@@ -353,7 +367,7 @@ def run_full_reasoning_pipeline(user_question: str) -> dict:
 
     # Объединяем все тексты в один итоговый контент
     combined_final_content = "\n".join(final_contents)
-    logger.info(f"финальный контент: {combined_final_content}")
+    logger.info(f"финальный контент: {combined_final_content[:150]}...")
     # Формируем финальный ответ, используя объединенный контент и вопрос пользователя
     final_answer_text = get_final_answer(
         client_openai,

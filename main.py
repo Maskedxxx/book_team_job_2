@@ -25,7 +25,7 @@ def run_services():
                 service,
                 "--host", "0.0.0.0",
                 f"--port={port}",
-                "--reload"
+                # "--reload"
             ]
             proc = subprocess.Popen(cmd)
             processes.append(proc)

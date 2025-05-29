@@ -208,3 +208,16 @@ class FullReasoningResponse(BaseModel):
     chapter_reasoning: ChapterReasoning
     subchapter_reasoning: SubchapterReasoning
     final_answer: AnswerResponse
+    
+class LLMEvaluation(BaseModel):
+    """
+    Модель структурированного ответа LLM с оценкой.
+    """
+    analysis_text: str = Field(
+        ..., 
+        description="Полный текст анализа и обратной связи по ответу пользователя"
+    )
+    evaluation: Literal["ВЕРНО", "НЕВЕРНО"] = Field(
+        ..., 
+        description="Итоговая оценка ответа пользователя: только ВЕРНО или НЕВЕРНО"
+    )
