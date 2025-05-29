@@ -30,7 +30,15 @@ def process_form_data(form_data: Dict[str, Any]) -> FormSubmission:
     row_id = form_data.get('row_id')
     
     # Список служебных полей, которые нужно исключить
-    service_fields = ["row_id", "Отправка ответов", "Отметка времени"]
+    service_fields = [
+        "row_id", 
+        "Отправка ответов", 
+        "Отметка времени",
+        "Рабочая почта для получения результатов"  # ← ДОБАВЛЕНО
+    ]
+    
+    # Добавить извлечение email из данных формы
+    user_email = form_data.get('Рабочая почта для получения результатов', '')
     
     # Создаем список пар вопрос-ответ
     qa_pairs = [
@@ -44,7 +52,8 @@ def process_form_data(form_data: Dict[str, Any]) -> FormSubmission:
         received_at=datetime.now(),
         processed=False,
         qa_pairs=qa_pairs,
-        row_id=row_id
+        row_id=row_id,
+        user_email=user_email
     )
     
     logger.info(f"Обработана форма из строки {row_id}: создано {len(qa_pairs)} пар вопрос-ответ")

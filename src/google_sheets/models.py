@@ -17,6 +17,7 @@ class FormSubmission(BaseModel):
     qa_pairs: List[QAPair] = []
     updated_at: Optional[datetime] = None
     row_id: str = ""
+    user_email: str = ""
 
 class SheetDataRequest(BaseModel):
     """Модель для запроса записи данных в Google Sheets."""
