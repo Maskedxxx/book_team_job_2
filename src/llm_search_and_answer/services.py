@@ -384,8 +384,9 @@ def get_final_answer(
 def run_full_reasoning_pipeline(user_question: str) -> dict:
     logger.info("Запуск LLM пайплайна")
 
-    # Фиксированный список номеров подглав для финального ответа
-    available_subchapters = ['3.11.1', '3.11.2', '3.11.3', '3.12.1', '3.12.2']
+    # Получаем список подглав из конфигурации
+    available_subchapters = port_settings.available_subchapters
+    logger.info(f"Используем подглавы из конфига: {available_subchapters}")
 
     # Создаем LLM-клиент для финального ответа
     client_openai = create_llm_client()
