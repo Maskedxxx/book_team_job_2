@@ -2,10 +2,7 @@
 
 from fastapi import FastAPI
 from src.google_sheets.routes import router as google_sheets_router
-from src.google_sheets.logger import get_logger
 from src.config import settings
-
-logger = get_logger(__name__)
 
 app = FastAPI(title="Google Sheets Service")
 

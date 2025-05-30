@@ -20,9 +20,9 @@ from src.llm_search_and_answer.models import (
     ChapterReasoning,
     SubchapterReasoning
 )
-from src.llm_search_and_answer.logger import get_logger
+from src.utils.logger import get_logger
 
-logger = get_logger(__name__)
+logger = get_logger("llm_service")
 
 def get_access_token() -> str:
     """
@@ -34,6 +34,7 @@ def get_access_token() -> str:
         response = httpx.get(url, verify=False)
         response.raise_for_status()
         data = response.json()
+        logger.debug("Токен получен успешно")
         return data["access_token"]
     except Exception as e:
         logger.error(f"Ошибка при получении access_token: {e}")
@@ -108,8 +109,7 @@ def fetch_content_parts() -> str:
         url = f"http://127.0.0.1:{port_settings.book_parser_port}/parser/parts"
         r = httpx.get(url, verify=False)
         r.raise_for_status()
-        # Допустим, parser возвращает JSON со списком частей,
-        # мы можем либо вернуть r.text, либо сериализовать в строку нужного формата
+        logger.debug("Получены части книги")
         return r.text  # или json.dumps(r.json())
     except Exception as e:
         logger.error(f"fetch_content_parts: {e}")
@@ -125,6 +125,7 @@ def fetch_chapters_content(part_number: int) -> str:
         url = f"http://127.0.0.1:{port_settings.book_parser_port}/parser/parts/{part_number}/chapters"
         r = httpx.get(url, verify=False)
         r.raise_for_status()
+        logger.debug(f"Получены главы для части {part_number}")
         return r.text
     except Exception as e:
         logger.error(f"fetch_chapters_content: {e}")
@@ -139,6 +140,7 @@ def fetch_subchapters_content(part_number: int, chapter_number: int) -> str:
         url = f"http://127.0.0.1:{port_settings.book_parser_port}/parser/parts/{part_number}/chapters/{chapter_number}/subchapters"
         r = httpx.get(url, verify=False)
         r.raise_for_status()
+        logger.debug(f"Получены подглавы для части {part_number}, главы {chapter_number}")
         return r.text
     except Exception as e:
         logger.error(f"fetch_subchapters_content: {e}")
@@ -192,6 +194,7 @@ def fetch_subchapter_text(subchapter_number: str) -> str:
             f"Вот выжимка текста каждой страницы: \n<summary>{joined_summaries}</summary>"
         )
 
+        logger.debug(f"Получен контент подглавы {subchapter_number}: {len(pages)} страниц")
         return formatted_text
     except Exception as e:
         logger.error(f"fetch_subchapter_text: {e}")
@@ -208,8 +211,7 @@ def robust_json_parse(model: BaseModel, text: str) -> BaseModel:
     try:
         return model.model_validate_json(text)
     except Exception as e:
-        print(f"Первичный парсинг не удался: {e}")
-        print(f"Исходный текст: {text}")
+        logger.debug(f"Первичный парсинг не удался: {e}")
 
         # Попытка 1: Добавить закрывающую фигурную скобку, если её нет
         if not text.strip().endswith("}"):
@@ -237,8 +239,8 @@ def robust_json_parse(model: BaseModel, text: str) -> BaseModel:
         try:
             return model.model_validate_json(text)
         except Exception as e2:
-            print(f"Попытка исправления не удалась: {e2}")
-            print(f"Исправленный текст: {text}")
+            logger.error(f"Попытка исправления JSON не удалась: {e2}")
+            logger.debug(f"Исправленный текст: {text}")
             raise
 
 # --------------------------------------------------------------------
@@ -278,7 +280,7 @@ def get_book_part_reasoning(
         )
         return response
     except Exception as e:
-        logger.warning(f"Ошибка при выполнении запроса: {e}")
+        logger.error(f"Ошибка при выполнении запроса: {e}")
         raise
 
 def get_chapter_reasoning(
@@ -368,6 +370,7 @@ def get_final_answer(
         
         # Форматируем ответ: оценка в начале, потом обоснование
         formatted_response = f"ИТОГОВАЯ ОЦЕНКА: {response.evaluation}\n\n{response.analysis_text}"
+        logger.info(f"Получен финальный ответ: {response.evaluation}")
         return formatted_response
         
     except Exception as e:
@@ -379,7 +382,7 @@ def get_final_answer(
 # 6. Пример комплексной функции (все 4 шага) — опционально
 # --------------------------------------------------------------------
 def run_full_reasoning_pipeline(user_question: str) -> dict:
-    logger.info("Запуск нового пайплайна LLM-рассуждения для всех подглав...")
+    logger.info("Запуск LLM пайплайна")
 
     # Фиксированный список номеров подглав для финального ответа
     available_subchapters = ['3.11.1', '3.11.2', '3.11.3', '3.12.1', '3.12.2']
@@ -394,13 +397,14 @@ def run_full_reasoning_pipeline(user_question: str) -> dict:
             content = fetch_subchapter_text(subchapter)
             # Обрамляем текст подглавы идентификатором для удобства в финальном контенте
             final_contents.append(f"<content_subchapter id='{subchapter}'>\n{content}\n</content_subchapter>")
-            logger.info(f"Получен текст подглавы {subchapter}")
+            logger.debug(f"Обработана подглава {subchapter}")
         except Exception as e:
             logger.error(f"Ошибка получения текста для подглавы {subchapter}: {e}")
 
     # Объединяем все тексты в один итоговый контент
     combined_final_content = "\n".join(final_contents)
-    logger.info(f"финальный контент: {combined_final_content[:150]}...")
+    logger.debug(f"Собран контент из {len(final_contents)} подглав")
+    
     # Формируем финальный ответ, используя объединенный контент и вопрос пользователя
     final_answer_text = get_final_answer(
         client_openai,
@@ -408,8 +412,8 @@ def run_full_reasoning_pipeline(user_question: str) -> dict:
         combined_final_content,
         user_question
     )
-    logger.info(f"Финальный ответ:\n{final_answer_text}")
 
+    logger.info("LLM пайплайн завершен")
     return {
         "selected_subchapters": available_subchapters,
         "combined_final_content": combined_final_content,

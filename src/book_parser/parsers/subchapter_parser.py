@@ -1,6 +1,6 @@
 from typing import List, Dict, Any
 from src.book_parser.models import SubchapterOutput
-from src.book_parser.logger import get_logger
+from src.utils.logger import get_logger
 
 class SubchapterParser:
     """
@@ -50,7 +50,7 @@ class SubchapterParser:
             summary=subchapter.get("summary", "Нет описания"),
             key_points=key_points_str
         )
-        self.logger.info(f"Распарсена подглава: {model.title}")
+        self.logger.debug(f"Распарсена подглава: {model.title}")
         return model
 
     def parse_subchapters_by_chapter(self, selected_part: int, selected_chapter: int) -> List[SubchapterOutput]:
@@ -67,7 +67,7 @@ class SubchapterParser:
                         subchapters = chapter.get("subchapters", [])
                         models = [self.to_model(sub) for sub in subchapters]
                         subchapter_titles = [model.title for model in models]
-                        self.logger.info(f"Успешно распарсены подглавы: {subchapter_titles}")
+                        self.logger.debug(f"Успешно распарсены подглавы: {subchapter_titles}")
                         return models
-        self.logger.info(f"Для части {selected_part} и главы {selected_chapter} подглавы не найдены")
+        self.logger.debug(f"Для части {selected_part} и главы {selected_chapter} подглавы не найдены")
         return []

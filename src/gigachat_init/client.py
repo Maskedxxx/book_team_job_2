@@ -7,9 +7,9 @@
 from typing import Dict, Optional
 from datetime import datetime
 from src.gigachat_init.auth import get_gigachat_token, is_token_valid, ensure_fresh_token
-from src.gigachat_init.logger import get_logger
+from src.utils.logger import get_logger
 
-logger = get_logger(__name__) 
+logger = get_logger("gigachat_init") 
 
 class GigaChatClient:
     """
@@ -32,11 +32,11 @@ class GigaChatClient:
         Инициализация клиента и получение первого токена.
         """
         try:
-            logger.info("Инициализация клиента GigaChat")
+            logger.debug("Инициализация клиента GigaChat")
             self._token_data = get_gigachat_token()
-            logger.info("Клиент успешно инициализирован")
+            logger.info("Клиент GigaChat инициализирован")
         except Exception as e:
-            logger.error(f"Ошибка при инициализации клиента: {e}")
+            logger.error(f"Ошибка инициализации клиента: {e}")
             raise
     
     @property

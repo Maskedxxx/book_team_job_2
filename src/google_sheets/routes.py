@@ -1,14 +1,12 @@
-# src/google_sheets/routes.py
-
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import JSONResponse
 import json
 from src.google_sheets.services import process_form_data, save_form_submission
 from src.google_sheets.services import get_form_submission_by_row_id
 from src.google_sheets.services import process_form_submission_with_llm
-from src.google_sheets.logger import get_logger
+from src.utils.logger import get_logger
 
-logger = get_logger(__name__)
+logger = get_logger("google_sheets")
 
 router = APIRouter(prefix="/sheets", tags=["google_sheets"])
 
@@ -31,6 +29,7 @@ async def receive_data(request: Request):
         
         # Сохраняем данные в JSON
         entry_id = save_form_submission(form_submission)
+        logger.info(f"Форма {row_id} сохранена с {len(form_submission.qa_pairs)} парами Q&A")
         
         # Формируем ответ
         return JSONResponse(
@@ -86,13 +85,14 @@ async def process_form_with_llm(row_id: str):
         404: Если форма не найдена
         500: При ошибках запуска обработки
     """
-    logger.info(f"Запрошена обработка формы для строки: {row_id}")
+    logger.info(f"Запуск обработки формы {row_id}")
     
     try:
         # Проверяем существование формы
         form_data = get_form_submission_by_row_id(row_id)
         
         if form_data is None:
+            logger.warning(f"Форма {row_id} не найдена")
             return JSONResponse(
                 status_code=404,
                 content={
@@ -103,6 +103,7 @@ async def process_form_with_llm(row_id: str):
         
         # Проверяем, не обработана ли форма уже
         if form_data.get("processed", False):
+            logger.info(f"Форма {row_id} уже обработана")
             return JSONResponse(
                 status_code=200,
                 content={
@@ -117,6 +118,7 @@ async def process_form_with_llm(row_id: str):
         # Используем create_task вместо await для асинхронной обработки
         from asyncio import create_task
         create_task(process_form_submission_with_llm(row_id))
+        logger.info(f"Обработка формы {row_id} запущена в фоне")
         
         # Возвращаем статус запуска
         return JSONResponse(
@@ -160,7 +162,7 @@ async def process_form_with_llm(row_id: str):
         
         # Логируем трассировку стека для отладки
         import traceback
-        logger.error(f"Трассировка: {traceback.format_exc()}")
+        logger.debug(f"Трассировка: {traceback.format_exc()}")
         
         return JSONResponse(
             status_code=500,
@@ -187,7 +189,7 @@ async def get_form_data(row_id: str):
         404: Если данные не найдены
         500: При ошибке обработки запроса
     """
-    logger.info(f"Запрос данных формы для строки: {row_id}")
+    logger.debug(f"Запрос данных формы {row_id}")
     
     try:
         # Получаем данные формы
@@ -195,6 +197,7 @@ async def get_form_data(row_id: str):
         
         # Если данные не найдены
         if form_data is None:
+            logger.warning(f"Данные формы {row_id} не найдены")
             return JSONResponse(
                 status_code=404,
                 content={
@@ -240,6 +243,7 @@ async def check_processing(row_id: str):
         
         # Если данные не найдены
         if form_data is None:
+            logger.warning(f"Данные формы {row_id} для проверки статуса не найдены")
             return JSONResponse(
                 status_code=404,
                 content={
@@ -250,6 +254,7 @@ async def check_processing(row_id: str):
         
         # Проверяем статус обработки
         processed = form_data.get("processed", False)
+        logger.debug(f"Статус обработки формы {row_id}: {'завершена' if processed else 'в процессе'}")
         
         # Возвращаем статус
         return JSONResponse(
