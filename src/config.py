@@ -17,7 +17,7 @@ class ServicePortsSettings(BaseAppSettings):
     
     # Список подглав для LLM анализа
     available_subchapters: List[str] = [
-        '3.11.1', '3.11.2', '3.11.3', '3.12.1', '3.12.2'
+        '2.4.12', '3.9.1', '3.9.2', '3.9.3', '3.9.4', 
     ]
 
     model_config = ConfigDict(

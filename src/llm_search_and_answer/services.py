@@ -146,21 +146,48 @@ def fetch_subchapters_content(part_number: int, chapter_number: int) -> str:
         logger.error(f"fetch_subchapters_content: {e}")
         raise
 
-def fetch_subchapter_text(subchapter_number: str) -> str:
+# ==========================================
+# TODO: ТРЕБУЕТСЯ РЕАЛИЗАЦИЯ SUMMARY СТРАНИЦ
+# ==========================================
+"""
+TODO: Для полной работы системы необходимо реализовать:
+
+1. ГЕНЕРАЦИЯ SUMMARY ДЛЯ КАЖДОЙ СТРАНИЦЫ:
+   - Обработать все страницы в kniga_full_content.json
+   - Создать summary для каждой страницы используя LLM
+   - Добавить поле "summary" в каждый объект страницы
+   
+2. СТРУКТУРА СТРАНИЦЫ ДОЛЖНА БЫТЬ:
+   {
+     "pageNumber": 47,
+     "content": "полный текст страницы...",
+     "summary": "краткое описание содержимого страницы...",  # <- ДОБАВИТЬ
+     "metadata": {...}
+   }
+
+3. ПОСЛЕ РЕАЛИЗАЦИИ:
+   - Метод fetch_subchapter_text() будет корректно работать с summary страниц
+   - Контекст для LLM станет более детализированным
+   - Возможна гибкая настройка уровня детализации (summary подглавы VS summary страниц)
+
+4. АЛЬТЕРНАТИВЫ РЕАЛИЗАЦИИ:
+   - Использовать GigaChat для автоматической генерации summary
+   - Создать отдельный скрипт для обработки всех страниц
+   - Реализовать ленивую генерацию summary при первом обращении
+"""
+
+# ==========================================
+# ВРЕМЕННОЕ РЕШЕНИЕ: SUMMARY ПОДГЛАВ
+# ==========================================
+
+def fetch_subchapter_text_original(subchapter_number: str) -> str:
     """
-    Запрашивает у сервиса /parser/subchapters/{subchapter_number}/content
-    текстовое содержимое указанной подглавы, выполняет предобработку и возвращает
-    структурированный текст с префиксами и постфиксами, удобными для понимания LLM.
+    ОРИГИНАЛЬНЫЙ МЕТОД - правильно спроектирован для работы с summary страниц.
     
-    Из полученного объекта:
-      - Извлекается subchapter_title,
-      - Из списка pages берутся номера страниц и summary каждой страницы.
-      
-    Формат итогового текста:
-      Контекст: вот имя главы <subchapter_title>, вот номера страницы этой главы <номера через запятую>, 
-      вот выжимка текста каждой страницы: <Номер страницы: summary, Номер страницы: summary, ...>.
-      
-      Содержимое content (полный текст страницы) остаётся без изменений.
+    НЕ ИСПОЛЬЗУЕТСЯ пока не будут реализованы summary для каждой страницы.
+    Оставлен как эталон правильной архитектуры.
+    
+    Ожидает что в kniga_full_content.json у каждой страницы есть поле "summary".
     """
     try:
         url = f"http://127.0.0.1:{port_settings.book_parser_port}/parser/subchapters/{subchapter_number}/content"
@@ -168,24 +195,22 @@ def fetch_subchapter_text(subchapter_number: str) -> str:
         r.raise_for_status()
         raw_text = r.text
 
-        # Пробуем распарсить полученный текст как JSON
         data = json.loads(raw_text)
-        # Если API оборачивает результат в ключ "content", берем данные из него
         if "content" in data and isinstance(data["content"], dict):
             data = data["content"]
 
         subchapter_title = data.get("subchapter_title", "Неизвестный заголовок")
         pages = data.get("pages", [])
 
-        # Извлекаем номера страниц (просто цифры)
+        # Извлекаем номера страниц
         page_numbers = [str(page.get("page_number", "")) for page in pages if page.get("page_number") is not None]
-        # Формируем выжимку текста для каждой страницы в виде "Номер страницы: summary"
+        
+        # ЗДЕСЬ БУДЕТ РАБОТАТЬ КОГДА ДОБАВЯТСЯ SUMMARY СТРАНИЦ
         page_summaries = [
             f"{page.get('page_number')}: {page.get('summary', '').strip()}" 
             for page in pages if page.get("page_number") is not None
         ]
 
-        # Выносим операцию join в отдельную переменную
         joined_summaries = ',\n '.join(page_summaries)
 
         formatted_text = (
@@ -197,8 +222,121 @@ def fetch_subchapter_text(subchapter_number: str) -> str:
         logger.debug(f"Получен контент подглавы {subchapter_number}: {len(pages)} страниц")
         return formatted_text
     except Exception as e:
+        logger.error(f"fetch_subchapter_text_original: {e}")
+        raise
+
+
+def fetch_subchapter_text(subchapter_number: str) -> str:
+    """
+    ВРЕМЕННАЯ РЕАЛИЗАЦИЯ: использует summary подглавы вместо summary страниц.
+    
+    Эта функция будет заменена на fetch_subchapter_text_original() 
+    после реализации summary для каждой страницы.
+    """
+    try:
+        # 1. Получаем данные о страницах от API
+        url = f"http://127.0.0.1:{port_settings.book_parser_port}/parser/subchapters/{subchapter_number}/content"
+        r = httpx.get(url, verify=False)
+        r.raise_for_status()
+        raw_text = r.text
+
+        data = json.loads(raw_text)
+        if "content" in data and isinstance(data["content"], dict):
+            data = data["content"]
+
+        subchapter_title = data.get("subchapter_title", "Неизвестный заголовок")
+        pages = data.get("pages", [])
+
+        # 2. Извлекаем номера страниц
+        page_numbers = [str(page.get("page_number", "")) for page in pages if page.get("page_number") is not None]
+
+        # 3. ВРЕМЕННОЕ РЕШЕНИЕ: используем summary подглавы
+        subchapter_summary = get_subchapter_summary_from_knowmap(subchapter_number)
+
+        # 4. Формируем текст в том же формате что ожидает LLM
+        formatted_text = (
+            f"Контекст: вот имя подглавы <title>{subchapter_title}</title>,\n\n"
+            f"Вот номера страницы этой подглавы <number_pages>{', '.join(page_numbers)}</number_pages>,\n\n"
+            f"Вот выжимка текста каждой страницы: \n<summary>{subchapter_summary}</summary>"
+        )
+
+        logger.debug(f"Получен контент подглавы {subchapter_number}: {len(pages)} страниц, используется summary подглавы")
+        return formatted_text
+        
+    except Exception as e:
         logger.error(f"fetch_subchapter_text: {e}")
         raise
+
+
+def get_subchapter_summary_from_knowmap(subchapter_number: str) -> str:
+    """
+    ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ: получает summary подглавы из know_map_data.
+    
+    Будет удалена после реализации summary для страниц.
+    """
+    try:
+        from src.book_parser.services import load_json
+        from src.book_parser.config import settings as book_settings
+        from pathlib import Path
+        
+        know_map_path = Path(book_settings.know_map_path)
+        know_map_data = load_json(know_map_path)
+        
+        def find_subchapter_summary(obj):
+            """Рекурсивно ищет подглаву по номеру и возвращает её summary."""
+            if isinstance(obj, dict):
+                if str(obj.get("subchapter_number")) == str(subchapter_number):
+                    summary = obj.get("summary", "")
+                    return summary
+                
+                for value in obj.values():
+                    result = find_subchapter_summary(value)
+                    if result:
+                        return result
+                        
+            elif isinstance(obj, list):
+                for item in obj:
+                    result = find_subchapter_summary(item)
+                    if result:
+                        return result
+            
+            return None
+        
+        summary = find_subchapter_summary(know_map_data)
+        if summary:
+            return summary
+        else:
+            logger.warning(f"Summary для подглавы {subchapter_number} не найден")
+            return f"Краткое описание для подглавы {subchapter_number} недоступно"
+            
+    except Exception as e:
+        logger.error(f"Ошибка получения summary для подглавы {subchapter_number}: {e}")
+        return f"Ошибка получения краткого описания: {str(e)}"
+
+
+# ==========================================
+# ПЛАН МИГРАЦИИ
+# ==========================================
+"""
+ПЛАН ПЕРЕХОДА НА ПОЛНУЮ РЕАЛИЗАЦИЮ:
+
+1. ТЕКУЩЕЕ СОСТОЯНИЕ:
+   ✅ fetch_subchapter_text() - работает с summary подглав
+   ✅ LLM получает контекст с заполненными summary
+   ✅ Пайплайн функционирует корректно
+
+2. СЛЕДУЮЩИЕ ШАГИ:
+   🔲 Создать скрипт генерации summary для всех страниц
+   🔲 Обновить kniga_full_content.json с новыми summary
+   🔲 Переключить fetch_subchapter_text() на оригинальную логику
+   🔲 Удалить временные функции
+   🔲 Протестировать работу с summary страниц
+
+3. ПРЕИМУЩЕСТВА ПОСЛЕ МИГРАЦИИ:
+   - Более детализированный контекст для LLM
+   - Возможность работы на уровне отдельных страниц
+   - Лучшая точность ответов для специфических вопросов
+"""
 
 # --------------------------------------------------------------------
 # 4. Утилита для "робастного" парсинга JSON
@@ -355,14 +493,14 @@ def get_final_answer(
     """
     try:
         response = client.chat.completions.create(
-            model="GigaChat-Max",
+            model="GigaChat-2-Max",
             response_model=LLMEvaluation,  # ← Используем новую модель
             temperature=0.2,
             messages=[
                 {"role": "system", "content": f"ИНСТРУКЦИИ: {system_prompt}"},
                 {"role": "user", "content": (
                     f"Финальный контент (извлечённый из страниц): <content_book>{final_content}</content_book>\n"
-                    f"Вопрос пользователя: {question_user}\n"
+                    f"Вопрос к пользователю: {question_user}\n"
                     "Ответь согласно ИНСТРУКЦИИ в формате JSON:"
                 )}
             ],
